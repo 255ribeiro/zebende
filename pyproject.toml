@@ -9,6 +9,42 @@ readme = "README.md"
 python = "^3.12"
 
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+pytest-coverage = "^0.0"
+taskipy = "^1.13.0"
+ruff = "^0.4.10"
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules"
+
+
+[tool.taskipy.tasks]
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+docs = 'mkdocs serve'
+site = 'mkdocs gh-deploy'
+pre_test = 'task lint'
+test = 'pytest -s -x --cov=fast_zero -vv'
+post_test = 'coverage html'
+
+[tool.poetry.group.doc.dependencies]
+mkdocs-material = "^9.5.27"
+mkdocstrings = "^0.25.1"
+mkdocstrings-python = "^1.10.5"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

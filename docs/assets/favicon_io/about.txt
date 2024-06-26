@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Material Symbols Sharp
+- Font Author: Copyright 2022, 2022 Google LLC.  All Rights Reserved.
+- Font Source: https://fonts.gstatic.com/s/materialsymbolssharp/v188/gNNBW2J8Roq16WD5tFNRaeLQk6-SHQ_R00k4c2_whPnoY9ruReaU4bHmz74m0ZkGH-VBYe1x0TV6x4yFH8F-H5OdzEL3sVTgJtfbYxOLojCOJ1H7-knk.ttf
+- Font License: Apache License, version 2.0 (http://www.apache.org/licenses/LICENSE-2.0.html))

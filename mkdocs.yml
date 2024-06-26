@@ -1,0 +1,17 @@
+site_name: zebende
+
+repo_url: https://github.com/255ribeiro/zebende
+repo_name: zebende
+
+theme:
+  name: material
+  logo: assets/favicon_io/favicon.ico
+  favicon: assets/favicon_io/favicon.ico
+
+
+markdown_extensions: 
+  - attr_list
+
+
+extra_css:
+  - stylesheet/extra.css
