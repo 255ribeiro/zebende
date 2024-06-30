@@ -1,11 +1,17 @@
+
 import numpy as np
-import numpy.typing as npt
+
+from . import detrended_series, mat_index_comb
 
 
 # P_DCCA calculator
-def p_dcca(int_series_mat , tws, time_stamps=None, DCCA_of=None):
+def p_dcca(data, tws, time_stamps=None, DCCA_of='all'):
+    if time_stamps == None:
+        time_stamps = np.arange(data.shape[0])
+    if DCCA_of == 'all':
+        DCCA_of = mat_index_comb(data, axis=1)
     # Global outputs
-    F_DFA_arr = np.empty(shape=(tws.shape[0], int_series_mat.shape[1]), dtype=float)
+    F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=float)
     DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
     P_DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
 
@@ -16,20 +22,20 @@ def p_dcca(int_series_mat , tws, time_stamps=None, DCCA_of=None):
 
         # in time scale (n) accumulators
         dcca_n = np.zeros(
-            shape=(int_series_mat.shape[0] - n, DCCA_of.shape[0]), dtype=np.float64
+            shape=(data.shape[0] - n, DCCA_of.shape[0]), dtype=np.float64
         )
 
         f2dfa_n = np.empty(
-            shape=(int_series_mat.shape[0] - n, int_series_mat.shape[1]), dtype=np.float64
+            shape=(data.shape[0] - n, data.shape[1]), dtype=np.float64
         )
 
         # Operações dentro das caixas (sobrepostas)
 
-        for i in range(int_series_mat.shape[0] - n):
+        for i in range(data.shape[0] - n):
 
             # 2-- dividir o sinal em N-n janelas temporais de comprimento n
             # janela temporal
-            time_window = int_series_mat[i : i + (n + 1), :]
+            time_window = data[i : i + (n + 1), :]
 
             time_stamps_window = time_stamps[i : i + (n + 1)]
 
@@ -37,7 +43,7 @@ def p_dcca(int_series_mat , tws, time_stamps=None, DCCA_of=None):
 
             # geralente polinômio de primerio grau
 
-            detrended_mat = detrended_serie(time_stamps_window, time_window)
+            detrended_mat = detrended_series(time_stamps_window, time_window)
 
             f2dfa_n[i] = np.power(detrended_mat, 2).mean(axis=0)
 
