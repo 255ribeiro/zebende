@@ -21,8 +21,9 @@ def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray| list | str = 
     # P_DCCA calculations             
     F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(data=data, tws=tws, time_steps=time_steps, DCCA_of=DCCA_of)
 
+    # DMCx2 output matrix
     DMCx2_arr = np.empty(shape=(tws.shape[0], dmcx2_of.shape[1]), dtype=np.float64)
-
+    # DMcx2 auxilary matrix
     dmcx2_mat = np.ones(shape=(dmcx2_of.max(), dmcx2_of.max(), tws.shape[0]), dtype=np.float64)
 
     for n_index in range(len(tws)):
