@@ -4,3 +4,6 @@ from .integrated_series import integrated_series as integrated_series
 from .mat_index_comb import mat_index_comb as mat_index_comb
 from .p_dcca import p_dcca as p_dcca
 from .time_windows import time_windows as time_windows
+from .dcca_of_from_dmcx2_of import dcca_of_from_dmcx2_of as dcca_of_from_dmcx2_of
+from .ordering_x_dmcx2_of import ordering_x_dmcx2_of as ordering_x_dmcx2_of
+from .dmcx2 import dmcx2 as dmcx2
