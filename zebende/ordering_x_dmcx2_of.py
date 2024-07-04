@@ -2,8 +2,7 @@ import numpy as np
 
 
 def ordering_x_dmcx2_of(dmcx2_of):
-    y_serie = dmcx2_of[:,0]
+    y_serie = dmcx2_of[:, 0]
     x_series = np.sort(dmcx2_of[:, 1:], axis=1)
-    print(x_series, y_serie)
-    out =  np.c_[ y_serie, x_series ] 
-    return out 
+    out = np.c_[y_serie, x_series]
+    return out

@@ -1,19 +1,43 @@
 
 import numpy as np
 
+from numpy.typing import NDArray
+
 from . import detrended_series, mat_index_comb
+
+from .p_dcca_simple_output import p_dcca_simple_output
+from .p_dcca_matrix_output import p_dcca_matrix_output
 
 
 # P_DCCA calculator
-def p_dcca(data, tws, time_steps=None, DCCA_of='all'):
+def p_dcca(data, tws, time_steps=None, DCCA_of='all', P_DCCA_output_format = 'simple')-> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
+
+    # setting time_steps in None is passed
     if time_steps == None:
         time_steps = np.arange(data.shape[0])
-    if DCCA_of == 'all':
-        DCCA_of = mat_index_comb(data, axis=1)
+
+    if type(DCCA_of) == str:
+        if DCCA_of == 'all':
+            DCCA_of = mat_index_comb(data, axis=1)
     # Global outputs
     F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=float)
     DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
-    P_DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
+
+    # P_DCCA output formats and functions
+
+    # simple output
+    if P_DCCA_output_format == 'simple':
+        #output array
+        P_DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
+        # output function
+        P_DCCA_output_funtion = p_dcca_simple_output
+    # matrix output
+    elif P_DCCA_output_format == 'matrix':
+        # output matrix
+        P_DCCA_arr = np.ones(shape=(DCCA_of.max()+1, DCCA_of.max()+1, tws.shape[0]), dtype=np.float64)
+        # output function
+        P_DCCA_output_funtion = p_dcca_matrix_output
+
 
     # for time scales in n
     for n_index in range(len(tws)):
@@ -58,8 +82,7 @@ def p_dcca(data, tws, time_steps=None, DCCA_of='all'):
 
         DCCA_arr[n_index, :] = dcca_n.mean(axis=0)
 
-        for j, l in enumerate(DCCA_of):
-
-            P_DCCA_arr[n_index, j] = np.round(DCCA_arr[n_index, j] / (F_DFA_arr[n_index, l[0]] * F_DFA_arr[n_index, l[1]]), 5)
+        # calculation of P_DCCA
+        P_DCCA_output_funtion(n_index, DCCA_of, F_DFA_arr, DCCA_arr, P_DCCA_arr)
 
     return F_DFA_arr, DCCA_arr, P_DCCA_arr

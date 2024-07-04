@@ -7,12 +7,13 @@ def dmc_of_all_as_y(data):
     for i in range(data.shape[1]):
         temp = temp[i:] + temp[:i]
         dmc_list.append(temp)
+    return np.array(dmc_list)
+
 
 if __name__ == '__main__':
-    ...
-    data = np.arange(16*16).reshape(16,16)
+    data = np.arange(16 * 16).reshape(16, 16)
     print(data)
     test_01 = dmc_of_all_as_y(data)
-    test_02 = np.arange(data.shape[1])
+    test_02 = np.array([np.arange(data.shape[1])])
     print(test_01)
     print(test_02)
