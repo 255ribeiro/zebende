@@ -2,6 +2,7 @@ from typing import Literal
 
 import numpy as np
 
+
 from . import (
     dcca_of_from_dmcx2_of,
     dmc_of_all_as_y,
