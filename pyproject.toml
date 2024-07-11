@@ -8,6 +8,8 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 numpy = "^2.0.0"
+numba = "^0.60.0"
+cupy-cuda12x = "^13.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -15,6 +17,13 @@ pytest = "^8.2.2"
 pytest-coverage = "^0.0"
 taskipy = "^1.13.0"
 ruff = "^0.4.10"
+ipykernel = "^6.29.5"
+pandas = "^2.2.2"
+
+[tool.poetry.group.doc.dependencies]
+mkdocs-material = "^9.5.27"
+mkdocstrings = "^0.25.1"
+mkdocstrings-python = "^1.10.5"
 
 [tool.ruff.lint]
 preview = true
@@ -41,10 +50,7 @@ pre_test = 'task lint'
 test = 'pytest -s -x --cov=fast_zero -vv'
 post_test = 'coverage html'
 
-[tool.poetry.group.doc.dependencies]
-mkdocs-material = "^9.5.27"
-mkdocstrings = "^0.25.1"
-mkdocstrings-python = "^1.10.5"
+
 
 [build-system]
 requires = ["poetry-core"]

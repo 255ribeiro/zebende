@@ -20,21 +20,21 @@ def p_dcca(data, tws, time_steps=None, DCCA_of='all', P_DCCA_output_format = 'si
         if DCCA_of == 'all':
             DCCA_of = mat_index_comb(data, axis=1)
     # Global outputs
-    F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=float)
-    DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
+    F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
+    DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
 
     # P_DCCA output formats and functions
 
     # simple output
     if P_DCCA_output_format == 'simple':
         #output array
-        P_DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=float)
+        P_DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
         # output function
         P_DCCA_output_funtion = p_dcca_simple_output
     # matrix output
     elif P_DCCA_output_format == 'matrix':
         # output matrix
-        P_DCCA_arr = np.ones(shape=(DCCA_of.max()+1, DCCA_of.max()+1, tws.shape[0]), dtype=np.float64)
+        P_DCCA_arr = np.ones(shape=(DCCA_of.max()+1, DCCA_of.max()+1, tws.shape[0]), dtype=data.dtype)
         # output function
         P_DCCA_output_funtion = p_dcca_matrix_output
 
@@ -46,11 +46,11 @@ def p_dcca(data, tws, time_steps=None, DCCA_of='all', P_DCCA_output_format = 'si
 
         # in time scale (n) accumulators
         dcca_n = np.zeros(
-            shape=(data.shape[0] - n, DCCA_of.shape[0]), dtype=np.float64
+            shape=(data.shape[0] - n, DCCA_of.shape[0]), dtype=data.dtype
         )
 
         f2dfa_n = np.empty(
-            shape=(data.shape[0] - n, data.shape[1]), dtype=np.float64
+            shape=(data.shape[0] - n, data.shape[1]), dtype=data.dtype
         )
 
         # Operações dentro das caixas (sobrepostas)

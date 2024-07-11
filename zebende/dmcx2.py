@@ -21,7 +21,10 @@ def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray | list | ENUM_
         elif dmcx2_of == 'all-full':
             dmcx2_of = dmc_of_all_as_y(data)
     else:
-        dmcx2_of = ordering_x_dmcx2_of(dmcx2_of)
+        test_dmcx2_of = dmcx2_of[:,1:]
+        assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
+Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2 value to dmcx2 function""")
+        del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
     if DCCA_of == None:
@@ -30,7 +33,7 @@ def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray | list | ENUM_
     F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(data=data, tws=tws, time_steps=time_steps, DCCA_of=DCCA_of, P_DCCA_output_format = 'matrix')
 
     # DMCx2 output matrix
-    DMCx2_arr = np.empty(shape=(tws.shape[0], dmcx2_of.shape[1]), dtype=np.float64)
+    DMCx2_arr = np.empty(shape=(tws.shape[0], dmcx2_of.shape[0]), dtype=data.dtype)
 
     for n_index in range(len(tws)):
 
@@ -40,9 +43,9 @@ def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray | list | ENUM_
             x_indexes = dmcx2_of[j, 1:]
 
             mat_x = P_DCCA_arr[np.ix_(x_indexes, x_indexes)][:, :, n_index]
-            vec_y = P_DCCA_arr[np.ix_(y_indexes, x_indexes)][:, :, n_index]
-
+            vec_y = P_DCCA_arr[np.ix_(x_indexes, y_indexes)][:, :, n_index]
+            print(mat_x, vec_y)
             # dmcx2 calculation
-            DMCx2_arr[n_index, j] = vec_y @ np.linalg.inv(mat_x) @ vec_y.T
+            DMCx2_arr[n_index, j] = vec_y.T @ np.linalg.inv(mat_x) @ vec_y
 
     return F_DFA_arr, DCCA_arr, P_DCCA_arr, DMCx2_arr
