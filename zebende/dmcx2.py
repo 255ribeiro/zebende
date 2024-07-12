@@ -6,7 +6,7 @@ import numpy as np
 from . import (
     dcca_of_from_dmcx2_of,
     dmc_of_all_as_y,
-    ordering_x_dmcx2_of,
+
     p_dcca,
 )
 
@@ -24,7 +24,7 @@ def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray | list | ENUM_
     else:
         test_dmcx2_of = dmcx2_of[:,1:]
         assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
-Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2 value to dmcx2 function""")
+Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2_of value to zebende.dmcx2() function""")
         del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
