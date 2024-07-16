@@ -4,14 +4,15 @@ import numpy as np
 # linaer Least Squares fit
 def liner_ls_fit(arr_x, arr_y):
     n = arr_x.size
+
     x_sum = 0
     y_sum = 0
     xy_sum = 0
     x2_sum = 0
     for i in range(n):
         x_sum += arr_x[i]
-        y_sum += arr_y[i]
-        xy_sum += arr_x[i] * arr_y[i]
+        y_sum += arr_y[i,:]
+        xy_sum += arr_x[i] * arr_y[i,:]
         x2_sum += arr_x[i]**2
     # slope (m in y = mx +b)
     slope = (
@@ -33,5 +34,5 @@ def detrended_series(arr_x, arr_y):
     slope, inter = liner_ls_fit(arr_x, arr_y)
     out = np.empty_like(arr_y)
     for i in range(n):
-        out[i] = arr_y[i] - (slope * arr_x[i] + inter)
+        out[i] = arr_y[i,:] - (slope * arr_x[i] + inter)
     return out
