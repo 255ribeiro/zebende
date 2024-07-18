@@ -59,10 +59,10 @@ def liner_ls_fit(arr_x, arr_y):
 
 
 # detrended series
-def detrended_series(arr_x, arr_y):
+def detrended_series(arr_x, arr_y, out):
     n = arr_x.size
     slope, inter = liner_ls_fit(arr_x, arr_y)
-    out = np.empty_like(arr_y)
+
     for i in range(n):
         out[i] = arr_y[i,:] - (slope * arr_x[i] + inter)
-    return out
+
