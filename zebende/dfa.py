@@ -9,7 +9,7 @@ from .p_dcca_matrix_output import p_dcca_matrix_output
 
 
 # P_DCCA calculator
-def dfa(data, tws, time_steps=None, ) -> NDArray[np.float64]:
+def dfa(data, tws, time_steps=None ) -> NDArray[np.float64]:
         # setting time_steps in None is passed
     if time_steps == None:
         time_steps = np.arange(data.shape[0])

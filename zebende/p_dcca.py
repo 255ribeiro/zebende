@@ -39,15 +39,17 @@ def p_dcca(
             shape=(DCCA_of.max() + 1, DCCA_of.max() + 1, tws.shape[0]),fill_value=np.nan, dtype=data.dtype
         )
         # fill diagonal with ones
-        np.fill_diagonal(P_DCCA_arr, val=1)
+        r = np.arange(DCCA_of.max() + 1)
+        P_DCCA_arr[r,r, :] = 1
+        del r
+
+
 
         # output function
         P_DCCA_output_funtion = p_dcca_matrix_output
 
     # for time scales in n
-    for n_index in range(len(tws)):
-
-        n = tws[n_index]
+    for n_index, n  in enumerate(tws):
 
         # in time scale (n) accumulators
         dcca_n = np.full(shape=(data.shape[0] - n, DCCA_of.shape[0]), fill_value=np.nan, dtype=data.dtype)
