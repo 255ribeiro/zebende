@@ -1,5 +1,5 @@
 import numpy as np
-from numba import prange
+
 from numpy.typing import NDArray
 
 from . import detrended_series, mat_index_comb, detrended_fit_series
