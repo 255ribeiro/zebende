@@ -1,31 +1,33 @@
 from typing import Literal
 
 import numpy as np
+from numpy.typing import NDArray
 
 
 from . import (
     dcca_of_from_dmcx2_of,
     dmc_of_all_as_y,
-
     p_dcca,
 )
 
 ENUM_DMCx2_of = Literal['all-full', 'first-full']
 
-def dmcx2(data: np.ndarray, tws: np.ndarray, dmcx2_of: np.ndarray | list | ENUM_DMCx2_of = 'all-full', time_steps: np.ndarray | None = None, DCCA_of: np.ndarray | list | None = None):
+
+def dmcx2(data: NDArray[np.float64], tws: NDArray[np.float64], dmcx2_of: NDArray[np.float64] | list | ENUM_DMCx2_of = 'all-full', time_steps: np.ndarray | None = None, DCCA_of: np.ndarray | list | None = None):
     
     if type(dmcx2_of) == str:
+
         # creating ndarray of y and x values for DMCx2 calculations
         if dmcx2_of == 'first-full':
             dmcx2_of =np.array( [np.arange(data.shape[1])])
         # creating ndarray of y and x values for DMCx2 calculations
         elif dmcx2_of == 'all-full':
             dmcx2_of = dmc_of_all_as_y(data)
-    else:
-        test_dmcx2_of = dmcx2_of[:,1:]
-        assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
+    
+    test_dmcx2_of = dmcx2_of[:,1:]
+    assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
 Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2_of value to zebende.dmcx2() function""")
-        del test_dmcx2_of
+    del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
     if DCCA_of == None:

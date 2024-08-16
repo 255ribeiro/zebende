@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Literal
 
 from numpy.typing import NDArray
 
@@ -7,10 +8,11 @@ from . import detrended_series, mat_index_comb, detrended_fit_series
 from .p_dcca_simple_output import p_dcca_simple_output
 from .p_dcca_matrix_output import p_dcca_matrix_output
 
+ENUM_DCCA_of = Literal['all']
 
 # P_DCCA calculator
 def p_dcca(
-    data, tws, time_steps=None, DCCA_of="all", P_DCCA_output_format="simple"
+    data: NDArray[np.float64], tws: NDArray[np.float64], time_steps: NDArray[np.float64] | None =None, DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
 
     # setting time_steps in None is passed
@@ -20,11 +22,12 @@ def p_dcca(
     if type(DCCA_of) == str:
         if DCCA_of == "all":
             DCCA_of = mat_index_comb(data, axis=1)
-    # Global outputs
-    F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
-    DCCA_arr = np.empty(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
 
-    # P_DCCA output formats and functions
+    # Global outputs for DFA and DCCA
+    F_DFA_arr = np.zeros(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
+    DCCA_arr = np.zeros(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
+
+    # P_DCCA global output format and function
 
     # simple output
     if P_DCCA_output_format == "simple":
@@ -42,9 +45,6 @@ def p_dcca(
         r = np.arange(DCCA_of.max() + 1)
         P_DCCA_arr[r,r, :] = 1
         del r
-
-
-
         # output function
         P_DCCA_output_funtion = p_dcca_matrix_output
 
@@ -52,9 +52,10 @@ def p_dcca(
     for n_index, n  in enumerate(tws):
 
         # in time scale (n) accumulators
-        dcca_n = np.full(shape=(data.shape[0] - n, DCCA_of.shape[0]), fill_value=np.nan, dtype=data.dtype)
 
         f2dfa_n = np.full(shape=(data.shape[0] - n, data.shape[1]),fill_value=np.nan, dtype=data.dtype)
+
+        dcca_n = np.full(shape=(data.shape[0] - n, DCCA_of.shape[0]), fill_value=np.nan, dtype=data.dtype)
 
         detrended_mat = np.full(shape=(n + 1, data.shape[1]), fill_value=np.nan, dtype=data.dtype)
     
@@ -67,7 +68,7 @@ def p_dcca(
 
             # 3-- Ajustar uma curva de tedência
 
-            # geralente polinômio de primerio grau
+
 
             detrended_series( # inputs
                 time_steps[i : i + (n + 1)],  # arr_x
@@ -77,10 +78,10 @@ def p_dcca(
 
             f2dfa_n[i] = np.power(detrended_mat, 2).mean(axis=0)
 
-            for j, comb in enumerate(DCCA_of):
+            for j, pair in enumerate(DCCA_of):
 
                 dcca_n[i, j] = (
-                    detrended_mat[:, comb[0]] * detrended_mat[:, comb[1]]
+                    detrended_mat[:, pair[0]] * detrended_mat[:, pair[1]]
                 ).mean(axis=0)
 
         # 5--para cada escala temporal

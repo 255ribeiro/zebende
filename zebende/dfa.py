@@ -16,7 +16,7 @@ def dfa(data, tws, time_steps=None ) -> NDArray[np.float64]:
 
 
     # Global outputs
-    F_DFA_arr = np.empty(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
+    F_DFA_arr = np.zeros(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
 
 
     # for time scales in n
