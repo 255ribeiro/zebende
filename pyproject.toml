@@ -2,8 +2,20 @@
 name = "zebende"
 version = "0.1.0"
 description = ""
+license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
 readme = "README.md"
+packages = [
+    { include = "zebende"},
+    { include = "zebende/**" },
+
+]
+
+classifiers =[
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Zig",
+    "Programming Language :: Python"
+    ]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -49,6 +61,11 @@ site = 'mkdocs gh-deploy'
 pre_test = 'task lint'
 test = 'pytest -s -x --cov=fast_zero -vv'
 post_test = 'coverage html'
+zrs = {cmd = "zig build -Doptimize=ReleaseSafe", echo=true}
+zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
+zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}
+zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=", echo=true}
+zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
 
 
 

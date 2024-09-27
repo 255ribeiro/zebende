@@ -1,97 +1,125 @@
+import platform
+import ctypes
+from pathlib import Path
+
+
 import numpy as np
 from typing import Literal
 
+from . import mat_index_comb
+
+from .array_to_c_pointer_convert import arr_2d_to_c
+
+
 from numpy.typing import NDArray
+from numpy.ctypeslib import ndpointer
 
-from . import detrended_series, mat_index_comb, detrended_fit_series
-
-from .p_dcca_simple_output import p_dcca_simple_output
-from .p_dcca_matrix_output import p_dcca_matrix_output
 
 ENUM_DCCA_of = Literal['all']
 
-# P_DCCA calculator
-def p_dcca(
-    data: NDArray[np.float64], tws: NDArray[np.float64], time_steps: NDArray[np.float64] | None =None, DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
+def p_dcca(input_data: NDArray[np.float64], tws: NDArray[np.float64], time_steps: NDArray[np.float64] | None = None, 
+               DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_matrix: bool=False
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
+    
+    assert (tws[:-1] < tws[1:]).all() == True , ("""time window scales (tws) values must be in crescent order.""")
 
-    # setting time_steps in None is passed
-    if time_steps == None:
-        time_steps = np.arange(data.shape[0])
+
+    # setting lib path
+
+    sys_dict = {'Windows': 'zebendezig.dll', 'Linux': 'zebendezig.so', 'Darwin': 'zebende_mac_64.so'}
+
+    sys_info = platform.uname()
+
+    lib_folder = Path(__file__).parent / 'zig_libs'
+
+    lib_file = lib_folder / sys_dict[sys_info.system]
+
+    zz = ctypes.cdll.LoadLibrary(lib_file)
+
+    # outputs types
+    c_2d_any_1d_uint = ndpointer(dtype=np.uintp, ndim=1, flags='C')
+    c_1d_double = ndpointer(dtype=np.float64, ndim=1, flags='C')
+    # getting the module file
+    _p_dcca = zz.p_dcca
+    # setting outputs
+    _p_dcca.argtypes = [ 
+                    c_1d_double, ctypes.c_size_t, ctypes.c_size_t, # input data
+                    c_2d_any_1d_uint, ctypes.c_size_t, # tws
+                    c_1d_double, # Time steps
+                    c_2d_any_1d_uint, ctypes.c_size_t, # DCCA of
+                    # outputs
+                    c_2d_any_1d_uint, # DFA_arr
+                    c_2d_any_1d_uint, # DCCA_arr
+                    c_1d_double, ctypes.c_bool, # DCCA_arr
+                    ]
+
+    # Preparing input data    
+
+    if not tws.flags.c_contiguous:
+        tws = np.ascontiguousarray(tws)
+    
+    # preparing DCCA array
 
     if type(DCCA_of) == str:
         if DCCA_of == "all":
-            DCCA_of = mat_index_comb(data, axis=1)
+            DCCA_of =  np.ascontiguousarray(mat_index_comb(input_data, axis=1))
+    c_DCCA_of = arr_2d_to_c(DCCA_of)
 
-    # Global outputs for DFA and DCCA
-    F_DFA_arr = np.zeros(shape=(tws.shape[0], data.shape[1]), dtype=data.dtype)
-    DCCA_arr = np.zeros(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
+    
+    # preparing tws array
+    tws = tws.astype(np.uintp)
 
-    # P_DCCA global output format and function
+    # preparing output array
+    F_DFA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], input_data.shape[1]), dtype=input_data.dtype))
+    c_DFA_arr = arr_2d_to_c(F_DFA_arr)
+    DCCA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=input_data.dtype))
+    c_DCCA_arr = arr_2d_to_c(DCCA_arr)
 
-    # simple output
-    if P_DCCA_output_format == "simple":
-        # output array
-        P_DCCA_arr = np.full(shape=(tws.shape[0], DCCA_of.shape[0]) ,fill_value=np.nan, dtype=data.dtype)
-        # output function
-        P_DCCA_output_funtion = p_dcca_simple_output
-    # matrix output
-    elif P_DCCA_output_format == "matrix":
-        # output matrix
+    # preparing data
+    data_shape = input_data.shape
+    try:
+        x_len = input_data.shape[0]
+        x_cnt = input_data.shape[1]
+    except:
+        x_len = input_data.size
+        x_cnt = 1
+    input_data = np.ascontiguousarray(np.asfortranarray(input_data).flatten(order="K"))
+    # preparing time Steps
+    if time_steps == None:
+        time_steps = np.ascontiguousarray(np.arange(x_len, dtype=input_data.dtype))
+
+    # preparing P_DCCA array
+    # output array
+    if P_DCCA_output_matrix == False:
+        P_DCCA_shape = np.array([tws.shape[0], DCCA_of.shape[0]])
+        P_DCCA_arr = np.ascontiguousarray(np.full(shape=(P_DCCA_shape.prod()) ,fill_value=np.nan, dtype=input_data.dtype))
+    # output matrix
+    elif P_DCCA_output_matrix == True:
         P_DCCA_arr = np.full(
-            shape=(DCCA_of.max() + 1, DCCA_of.max() + 1, tws.shape[0]),fill_value=np.nan, dtype=data.dtype
-        )
+            shape=(x_cnt, x_cnt, tws.shape[0]),fill_value=np.nan, dtype=input_data.dtype)
         # fill diagonal with ones
-        r = np.arange(DCCA_of.max() + 1)
+        P_DCCA_shape =  P_DCCA_arr.shape
+        r = np.arange(x_cnt, dtype= np.int64)
         P_DCCA_arr[r,r, :] = 1
         del r
-        # output function
-        P_DCCA_output_funtion = p_dcca_matrix_output
+        # flatteing matrix
+        P_DCCA_arr = np.ascontiguousarray(P_DCCA_arr.flatten())
 
-    # for time scales in n
-    for n_index, n  in enumerate(tws):
-
-        # in time scale (n) accumulators
-
-        f2dfa_n = np.full(shape=(data.shape[0] - n, data.shape[1]),fill_value=np.nan, dtype=data.dtype)
-
-        dcca_n = np.full(shape=(data.shape[0] - n, DCCA_of.shape[0]), fill_value=np.nan, dtype=data.dtype)
-
-        detrended_mat = np.full(shape=(n + 1, data.shape[1]), fill_value=np.nan, dtype=data.dtype)
-    
-        # Operações dentro das caixas (sobrepostas)
-
-        for i in range(data.shape[0] - n):
-
-            # 2-- dividir o sinal em N-n janelas temporais de comprimento n
-            # janela temporal
-
-            # 3-- Ajustar uma curva de tedência
-
-
-
-            detrended_series( # inputs
-                time_steps[i : i + (n + 1)],  # arr_x
-                data[i : i + (n + 1), :],  # mat_y
-                detrended_mat,  # output
+    # calling functon  
+    _p_dcca(input_data, x_len, x_cnt, 
+            tws, tws.size, 
+            time_steps, 
+            c_DCCA_of , DCCA_of.shape[0],
+            # Outputs
+            c_DFA_arr,
+            c_DCCA_arr,
+            P_DCCA_arr,
+            # P_DCCA output matrix
+            P_DCCA_output_matrix
             )
+    # reshaping P_DCCA output
+    P_DCCA_arr = P_DCCA_arr.reshape(P_DCCA_shape)
 
-            f2dfa_n[i] = np.power(detrended_mat, 2).mean(axis=0)
 
-            for j, pair in enumerate(DCCA_of):
-
-                dcca_n[i, j] = (
-                    detrended_mat[:, pair[0]] * detrended_mat[:, pair[1]]
-                ).mean(axis=0)
-
-        # 5--para cada escala temporal
-        # salvar valor de cada escala temporal
-
-        F_DFA_arr[n_index, :] = np.sqrt(f2dfa_n.mean(axis=0))
-
-        DCCA_arr[n_index, :] = dcca_n.mean(axis=0)
-
-        # calculation of P_DCCA
-        P_DCCA_output_funtion(n_index, DCCA_of, F_DFA_arr, DCCA_arr, P_DCCA_arr)
-
-    return F_DFA_arr, DCCA_arr, P_DCCA_arr
+  
+    return [F_DFA_arr, DCCA_arr, P_DCCA_arr]
