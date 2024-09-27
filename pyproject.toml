@@ -65,7 +65,9 @@ zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
 zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}
 zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=", echo=true}
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
-pipy = {cmd = "poetry publish --build -u <username> -p <passworld>"}
+pbld = {cmd = "poetry build", echo=true}
+ppub = {cmd = "poetry publish", echo=true}
+pypi ={cmd = "task pbld && task ppub", echo=true}
 
 
 [build-system]
