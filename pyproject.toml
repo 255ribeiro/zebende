@@ -6,8 +6,8 @@ license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
 readme = "README.md"
 packages = [
-    { include = "zebende"},
-    { include = "zebende/**" },
+    { include = "./zebende"},
+    # { include = "zebende/**" },
 
 ]
 
