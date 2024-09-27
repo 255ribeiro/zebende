@@ -1,4 +1,4 @@
-
+import numpy as np
 
 # integrates series
 def integrated_series(mat_series):

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.0"
+version = "0.1.1"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -13,12 +13,12 @@ packages = [
 
 classifiers =[
     "Development Status :: 5 - Production/Stable",
-    "Programming Language :: Zig",
+    # "Programming Language :: Zig",
     "Programming Language :: Python"
     ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.10"
 numpy = "^2.0.0"
 
 
