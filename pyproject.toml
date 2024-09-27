@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "zebende"
 version = "0.1.0"
-description = ""
+description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
 readme = "README.md"
@@ -20,8 +20,7 @@ classifiers =[
 [tool.poetry.dependencies]
 python = "^3.12"
 numpy = "^2.0.0"
-numba = "^0.60.0"
-cupy-cuda12x = "^13.2.0"
+
 
 
 [tool.poetry.group.dev.dependencies]
@@ -66,7 +65,7 @@ zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
 zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}
 zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=", echo=true}
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
-
+pipy = {cmd = "poetry publish --build -u <username> -p <passworld>"}
 
 
 [build-system]
