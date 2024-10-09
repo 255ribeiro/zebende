@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.2"
+version = "0.1.3"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -63,7 +63,8 @@ post_test = 'coverage html'
 zrs = {cmd = "zig build -Doptimize=ReleaseSafe", echo=true}
 zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
 zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}
-zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=", echo=true}
+zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=aarch64-macos", echo=true}
+zrsmi = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-macos -", echo=true}
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
 pbld = {cmd = "poetry build", echo=true}
 ppub = {cmd = "poetry publish", echo=true}

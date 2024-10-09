@@ -26,7 +26,7 @@ def p_dcca(input_data: NDArray[np.float64], tws: NDArray[np.float64], time_steps
 
     # setting lib path
 
-    sys_dict = {'Windows': 'zebendezig.dll', 'Linux': 'zebendezig.so', 'Darwin': 'zebende_mac_64.so'}
+    sys_dict = {'Windows': 'zebendezig.dll', 'Linux': 'libzebendezig.so', 'Darwin': 'libzebendezig.dylib'}
 
     sys_info = platform.uname()
 
