@@ -17,9 +17,27 @@ from numpy.ctypeslib import ndpointer
 
 ENUM_DCCA_of = Literal['all']
 
-def p_dcca(input_data: NDArray[np.float64], tws: NDArray[np.float64], time_steps: NDArray[np.float64] | None = None, 
-               DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_matrix: bool=False
-) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
+def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_matrix: bool=False
+) -> tuple[NDArray[np.float64],
+            NDArray[np.float64], 
+            NDArray[np.float64]]:
+    
+
+    """A function that calculates the 
+        .. math:: \roh_{DCCA}
+        for a group of time series
+
+        Args:
+        input_data (NDArray[np.float64]): 2D array of times series integrated data.
+        tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of 
+        dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
+        DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+        P_DCCA_output_matrix (bool, optional): _description_. Defaults to False.
+
+
+    Returns:
+        tuple[ NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]: _description_
+    """
     
     assert (tws[:-1] < tws[1:]).all() == True , ("""time window scales (tws) values must be in crescent order.""")
 
@@ -84,9 +102,8 @@ def p_dcca(input_data: NDArray[np.float64], tws: NDArray[np.float64], time_steps
         x_len = input_data.size
         x_cnt = 1
     input_data = np.ascontiguousarray(np.asfortranarray(input_data).flatten(order="K"))
-    # preparing time Steps
-    if time_steps == None:
-        time_steps = np.ascontiguousarray(np.arange(x_len, dtype=input_data.dtype))
+
+    time_steps = np.ascontiguousarray(np.arange(x_len, dtype=input_data.dtype))
 
     # preparing P_DCCA array
     # output array

@@ -1,7 +1,7 @@
-from typing import Literal
+from typing import (Literal, Any, Union)
 
 import numpy as np
-from numpy.typing import NDArray
+from numpy.typing import (NDArray, DTypeLike)
 
 
 from . import (
@@ -10,10 +10,27 @@ from . import (
     p_dcca,
 )
 
-ENUM_DMCx2_of = Literal['all-full', 'first-full']
+ENUM_DMCx2_of = Literal['all-full', 'first-full'] 
 
 
-def dmcx2(input_data: NDArray[np.float64], tws: NDArray[np.float64], dmcx2_of: NDArray[np.float64] | list | ENUM_DMCx2_of = 'all-full', time_steps: np.ndarray | None = None, DCCA_of: np.ndarray | list | None = None):
+def dmcx2(input_data: NDArray[np.float64], tws: NDArray[np.int64] | NDArray[np.float64], dmcx2_of: NDArray[np.float64] | list | ENUM_DMCx2_of = 'all-full',
+           DCCA_of: np.ndarray | list | None = None)-> tuple[
+                                                            NDArray[np.float64],
+                                                            NDArray[np.float64],
+                                                            NDArray[np.float64],
+                                                            NDArray[np.float64]
+                                                             ]:
+    """_summary_
+
+    Args:
+        input_data (NDArray[np.float64]): _description_
+        tws (NDArray[np.int64] | NDArray[np.float64]): _description_
+        dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
+        DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+
+    Returns:
+        tuple[ NDArray[np.float64], NDArray[np.float64], NDArray[np.float64], NDArray[np.float64] ]: _description_
+    """    
     
     if type(dmcx2_of) == str:
 
@@ -35,7 +52,7 @@ Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it
         for DCCA_pair in DCCA_of:
             if not np.isin(DCCA_pair, DCCA_of_dmc_required).all():
                 DCCA_of_dmc_required = a = np.append(DCCA_of_dmc_required, DCCA_pair, axis=0)
-    DCCA_of ==  DCCA_of_dmc_required
+    DCCA_of =  DCCA_of_dmc_required
     del DCCA_of_dmc_required
 
     # P_DCCA calculations

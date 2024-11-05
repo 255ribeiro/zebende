@@ -3,7 +3,7 @@ from typing import Literal
 
 from numpy.typing import NDArray
 
-from . import detrended_series, mat_index_comb, detrended_fit_series
+from . import detrended_series, mat_index_comb
 
 from .p_dcca_simple_output import p_dcca_simple_output
 from .p_dcca_matrix_output import p_dcca_matrix_output
@@ -12,12 +12,12 @@ ENUM_DCCA_of = Literal['all']
 
 # P_DCCA calculator
 def p_dcca(
-    data: NDArray[np.float64], tws: NDArray[np.float64], time_steps: NDArray[np.float64] | None =None, DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
+    data: NDArray[np.float64], tws: NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
 
     # setting time_steps in None is passed
-    if time_steps == None:
-        time_steps = np.arange(data.shape[0])
+
+    time_steps = np.arange(data.shape[0])
 
     if type(DCCA_of) == str:
         if DCCA_of == "all":
