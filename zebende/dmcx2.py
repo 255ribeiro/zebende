@@ -30,10 +30,16 @@ Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it
     del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
-    if DCCA_of == None:
-        DCCA_of = dcca_of_from_dmcx2_of(dmcx2_of)
+    DCCA_of_dmc_required = dcca_of_from_dmcx2_of(dmcx2_of)
+    if DCCA_of != None:
+        for DCCA_pair in DCCA_of:
+            if not np.isin(DCCA_pair, DCCA_of_dmc_required).all():
+                DCCA_of_dmc_required = a = np.append(DCCA_of_dmc_required, DCCA_pair, axis=0)
+    DCCA_of ==  DCCA_of_dmc_required
+    del DCCA_of_dmc_required
+
     # P_DCCA calculations
-    F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(input_data=input_data, tws=tws, time_steps=time_steps, DCCA_of=DCCA_of,  P_DCCA_output_matrix = True)
+    F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(input_data=input_data, tws=tws, DCCA_of=DCCA_of,  P_DCCA_output_matrix = True)
 
     # DMCx2 output matrix
     DMCx2_arr = np.empty(shape=(tws.shape[0], dmcx2_of.shape[0]), dtype=input_data.dtype)
