@@ -18,9 +18,10 @@ from numpy.ctypeslib import ndpointer
 ENUM_DCCA_of = Literal['all']
 
 def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_matrix: bool=False
-) -> tuple[NDArray[np.float64],
-            NDArray[np.float64], 
-            NDArray[np.float64]]:
+) -> tuple[NDArray[np.float64],     # DFA
+            NDArray[np.float64],    # DCCA
+            NDArray[np.float64]     # P_DCCA
+            ]:
     
 
     """A function that calculates the 
@@ -30,7 +31,6 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
         Args:
             input_data (NDArray[np.float64]): 2D array of times series integrated data.
             tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of time scales.
-            dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
             DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
             P_DCCA_output_matrix (bool, optional): _description_. Defaults to False.
 
