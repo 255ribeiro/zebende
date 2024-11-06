@@ -24,19 +24,22 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
     
 
     """A function that calculates the 
-        .. math:: \roh_{DCCA}
+       <span>&Rho;<sub>DCCA</sub></span>
         for a group of time series
 
         Args:
-        input_data (NDArray[np.float64]): 2D array of times series integrated data.
-        tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of 
-        dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
-        DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
-        P_DCCA_output_matrix (bool, optional): _description_. Defaults to False.
+            input_data (NDArray[np.float64]): 2D array of times series integrated data.
+            tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of time scales.
+            dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
+            DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+            P_DCCA_output_matrix (bool, optional): _description_. Defaults to False.
 
 
-    Returns:
-        tuple[ NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]: _description_
+        Returns:
+            <span>A tuple of 3 matrices:</span>
+            DFA(NDArray[np.float64]):_description_. 
+            DCCA(NDArray[np.float64]):_description_.
+            <span>&Rho;<sub>DCCA</sub></span>(NDArray[np.float64]):_description_.
     """
     
     assert (tws[:-1] < tws[1:]).all() == True , ("""time window scales (tws) values must be in crescent order.""")

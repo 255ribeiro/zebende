@@ -20,17 +20,25 @@ def dmcx2(input_data: NDArray[np.float64], tws: NDArray[np.int64] | NDArray[np.f
                                                             NDArray[np.float64],
                                                             NDArray[np.float64]
                                                              ]:
-    """_summary_
 
-    Args:
-        input_data (NDArray[np.float64]): _description_
-        tws (NDArray[np.int64] | NDArray[np.float64]): _description_
-        dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
-        DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+    """
+        A function that calculates the <span>DMC<sub>x</sub><sup>2</sup></span> for a group of time series
 
-    Returns:
-        tuple[ NDArray[np.float64], NDArray[np.float64], NDArray[np.float64], NDArray[np.float64] ]: _description_
-    """    
+        Args:
+            input_data (NDArray[np.float64]): _description_.
+            tws (NDArray[np.int64] | NDArray[np.float64]): _description_.
+            dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
+            DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+
+        Returns:
+            <span>A tuple of 4 matrices:</span><br>
+            DFA(NDArray[np.float64]):_description_,<br>
+            DCCA(NDArray[np.float64]):_description_,<br>
+            <span>&Rho;<sub>DCCA</sub></span>(NDArray[np.float64]):_description_,<br>
+            <span>DMC<sub>x</sub><sup>2</sup></span>(NDArray[np.float64]):_description_.<br>
+
+    """
+ 
     
     if type(dmcx2_of) == str:
 
