@@ -2,14 +2,12 @@ import platform
 import ctypes
 from pathlib import Path
 
-
 import numpy as np
 from typing import Literal
 
 from . import mat_index_comb
 
 from .array_to_c_pointer_convert import arr_2d_to_c
-
 
 from numpy.typing import NDArray
 from numpy.ctypeslib import ndpointer
