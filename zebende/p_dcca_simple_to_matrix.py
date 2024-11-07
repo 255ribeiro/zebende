@@ -8,7 +8,6 @@ def p_dcca_simple_to_matrix(simple_pdcca:NDArray[np.float64]) ->NDArray[np.float
     tws_count = simple_pdcca.shape[0]
     DCCA_of = mat_index_comb(series_count)
     shape = (series_count, series_count, tws_count)
-    print(shape)
     P_DCCA_arr = np.full(shape=shape,fill_value=np.nan, dtype=simple_pdcca.dtype)
     # fill diagonal with ones
     r = np.arange(series_count, dtype= np.int64)
