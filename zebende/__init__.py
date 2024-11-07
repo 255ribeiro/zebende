@@ -15,6 +15,9 @@ from .dcca_of_from_dmcx2_of import dcca_of_from_dmcx2_of as dcca_of_from_dmcx2_o
 from .p_dcca_simple_output import p_dcca_simple_output as p_dcca_simple_output
 from .p_dcca_matrix_output import p_dcca_matrix_output as p_dcca_matrix_output
 
+from .p_dcca_simple_to_matrix import p_dcca_simple_to_matrix as p_dcca_simple_to_matrix
+from .p_dcca_matrix_to_simple import p_dcca_matrix_to_simple as p_dcca_matrix_to_simple
+
 from .ordering_x_dmcx2_of import ordering_x_dmcx2_of as ordering_x_dmcx2_of
 
 from .dmc_of_all_as_y import dmc_of_all_as_y as dmc_of_all_as_y

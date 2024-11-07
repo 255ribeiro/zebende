@@ -54,7 +54,7 @@ def dmcx2(input_data: NDArray[np.float64],
     
     test_dmcx2_of = dmcx2_of[:,1:]
     assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
-Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2_of value to zebende.dmcx2() function""")
+Dmcx2 x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2_of values to zebende.dmcx2() function""")
     del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
