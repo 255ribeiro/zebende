@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.6"
+version = "0.1.7"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
