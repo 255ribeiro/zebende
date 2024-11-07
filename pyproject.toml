@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.5"
+version = "0.1.6"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -69,6 +69,9 @@ zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
 pbld = {cmd = "poetry build", echo=true}
 ppub = {cmd = "poetry publish", echo=true}
 pypi ={cmd = "task pbld && task ppub", echo=true}
+
+zrswlm = {cmd = "zrs && zrsl && zrsm", echo=true}
+
 
 
 [build-system]
