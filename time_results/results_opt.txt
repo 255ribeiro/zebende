@@ -1,0 +1,302 @@
+Number of time steps:           42
+Number of series:               4
+Size of series:                 15742
+Number of DCCA combinations:    6
+
+previous 0
+current 0
+
+---> starting calculations for time scale no. 0 of size 4
+elapsed allocation time 0
+elapsed det time 15
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 16 milis for time scale no. 0 of size 4
+reset
+---> starting calculations for time scale no. 1 of size 5
+elapsed allocation time 0
+elapsed det time 18
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 20 milis for time scale no. 1 of size 5
+reset
+---> starting calculations for time scale no. 2 of size 7
+elapsed allocation time 0
+elapsed det time 19
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 20 milis for time scale no. 2 of size 7
+reset
+---> starting calculations for time scale no. 3 of size 9
+elapsed allocation time 0
+elapsed det time 16
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 16 milis for time scale no. 3 of size 9
+reset
+---> starting calculations for time scale no. 4 of size 11
+elapsed allocation time 0
+elapsed det time 27
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 36 milis for time scale no. 4 of size 11
+reset
+---> starting calculations for time scale no. 5 of size 13
+elapsed allocation time 0
+elapsed det time 33
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 33 milis for time scale no. 5 of size 13
+reset
+---> starting calculations for time scale no. 6 of size 16
+elapsed allocation time 0
+elapsed det time 45
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 45 milis for time scale no. 6 of size 16
+reset
+---> starting calculations for time scale no. 7 of size 20
+elapsed allocation time 0
+elapsed det time 48
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 49 milis for time scale no. 7 of size 20
+reset
+---> starting calculations for time scale no. 8 of size 23
+elapsed allocation time 0
+elapsed det time 56
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 56 milis for time scale no. 8 of size 23
+reset
+---> starting calculations for time scale no. 9 of size 28
+elapsed allocation time 0
+elapsed det time 67
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 67 milis for time scale no. 9 of size 28
+reset
+---> starting calculations for time scale no. 10 of size 33
+elapsed allocation time 0
+elapsed det time 84
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 101 milis for time scale no. 10 of size 33
+reset
+---> starting calculations for time scale no. 11 of size 38
+elapsed allocation time 0
+elapsed det time 90
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 92 milis for time scale no. 11 of size 38
+reset
+---> starting calculations for time scale no. 12 of size 45
+elapsed allocation time 0
+elapsed det time 100
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 102 milis for time scale no. 12 of size 45
+reset
+---> starting calculations for time scale no. 13 of size 52
+elapsed allocation time 0
+elapsed det time 102
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 103 milis for time scale no. 13 of size 52
+reset
+---> starting calculations for time scale no. 14 of size 60
+elapsed allocation time 0
+elapsed det time 126
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 127 milis for time scale no. 14 of size 60
+reset
+---> starting calculations for time scale no. 15 of size 69
+elapsed allocation time 0
+elapsed det time 139
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 140 milis for time scale no. 15 of size 69
+reset
+---> starting calculations for time scale no. 16 of size 79
+elapsed allocation time 0
+elapsed det time 173
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 173 milis for time scale no. 16 of size 79
+reset
+---> starting calculations for time scale no. 17 of size 91
+elapsed allocation time 0
+elapsed det time 197
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 202 milis for time scale no. 17 of size 91
+reset
+---> starting calculations for time scale no. 18 of size 104
+elapsed allocation time 0
+elapsed det time 218
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 218 milis for time scale no. 18 of size 104
+reset
+---> starting calculations for time scale no. 19 of size 119
+elapsed allocation time 0
+elapsed det time 220
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 220 milis for time scale no. 19 of size 119
+reset
+---> starting calculations for time scale no. 20 of size 135
+elapsed allocation time 0
+elapsed det time 235
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 235 milis for time scale no. 20 of size 135
+reset
+---> starting calculations for time scale no. 21 of size 154
+elapsed allocation time 0
+elapsed det time 298
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 298 milis for time scale no. 21 of size 154
+reset
+---> starting calculations for time scale no. 22 of size 174
+elapsed allocation time 0
+elapsed det time 311
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 311 milis for time scale no. 22 of size 174
+reset
+---> starting calculations for time scale no. 23 of size 198
+elapsed allocation time 0
+elapsed det time 329
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 329 milis for time scale no. 23 of size 198
+reset
+---> starting calculations for time scale no. 24 of size 223
+elapsed allocation time 0
+elapsed det time 438
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 438 milis for time scale no. 24 of size 223
+reset
+---> starting calculations for time scale no. 25 of size 252
+elapsed allocation time 0
+elapsed det time 390
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 390 milis for time scale no. 25 of size 252
+reset
+---> starting calculations for time scale no. 26 of size 285
+elapsed allocation time 0
+elapsed det time 427
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 442 milis for time scale no. 26 of size 285
+reset
+---> starting calculations for time scale no. 27 of size 321
+elapsed allocation time 0
+elapsed det time 617
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 624 milis for time scale no. 27 of size 321
+reset
+---> starting calculations for time scale no. 28 of size 362
+elapsed allocation time 0
+elapsed det time 545
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 547 milis for time scale no. 28 of size 362
+reset
+---> starting calculations for time scale no. 29 of size 407
+elapsed allocation time 0
+elapsed det time 653
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 653 milis for time scale no. 29 of size 407
+reset
+---> starting calculations for time scale no. 30 of size 457
+elapsed allocation time 0
+elapsed det time 692
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 693 milis for time scale no. 30 of size 457
+reset
+---> starting calculations for time scale no. 31 of size 513
+elapsed allocation time 0
+elapsed det time 723
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 723 milis for time scale no. 31 of size 513
+reset
+---> starting calculations for time scale no. 32 of size 575
+elapsed allocation time 0
+elapsed det time 785
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 785 milis for time scale no. 32 of size 575
+reset
+---> starting calculations for time scale no. 33 of size 645
+elapsed allocation time 0
+elapsed det time 899
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 915 milis for time scale no. 33 of size 645
+reset
+---> starting calculations for time scale no. 34 of size 723
+elapsed allocation time 0
+elapsed det time 983
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 983 milis for time scale no. 34 of size 723
+reset
+---> starting calculations for time scale no. 35 of size 809
+elapsed allocation time 0
+elapsed det time 1183
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1193 milis for time scale no. 35 of size 809
+reset
+---> starting calculations for time scale no. 36 of size 905
+elapsed allocation time 0
+elapsed det time 1350
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1350 milis for time scale no. 36 of size 905
+reset
+---> starting calculations for time scale no. 37 of size 1011
+elapsed allocation time 0
+elapsed det time 1480
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1481 milis for time scale no. 37 of size 1011
+reset
+---> starting calculations for time scale no. 38 of size 1130
+elapsed allocation time 0
+elapsed det time 1523
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1525 milis for time scale no. 38 of size 1130
+reset
+---> starting calculations for time scale no. 39 of size 1261
+elapsed allocation time 0
+elapsed det time 1680
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1691 milis for time scale no. 39 of size 1261
+reset
+---> starting calculations for time scale no. 40 of size 1407
+elapsed allocation time 0
+elapsed det time 1970
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 1970 milis for time scale no. 40 of size 1407
+reset
+---> starting calculations for time scale no. 41 of size 1570
+elapsed allocation time 0
+elapsed det time 2255
+elapsed fill dfa time 0
+elapsed DCCA P_DCCA time 0
+tws elapsed: 2256 milis for time scale no. 41 of size 1570
+resetelapsed time for all 21691

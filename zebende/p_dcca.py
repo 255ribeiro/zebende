@@ -12,6 +12,7 @@ from .array_to_c_pointer_convert import arr_2d_to_c
 from numpy.typing import NDArray
 from numpy.ctypeslib import ndpointer
 
+uint_c_type = np.uintp
 
 ENUM_DCCA_of = Literal['all']
 
@@ -56,8 +57,8 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
     zz = ctypes.cdll.LoadLibrary(lib_file)
 
     # outputs types
-    c_2d_any_1d_uint = ndpointer(dtype=np.uintp, ndim=1, flags='C')
-    c_1d_double = ndpointer(dtype=np.float64, ndim=1, flags='C')
+    c_2d_any_1d_uint = ndpointer(dtype = uint_c_type, ndim=1, flags='C')
+    c_1d_double = ndpointer(dtype=np.double, ndim=1, flags='C')
     # getting the module file
     _p_dcca = zz.p_dcca
     # setting outputs
@@ -77,16 +78,18 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
     if not tws.flags.c_contiguous:
         tws = np.ascontiguousarray(tws)
     
-    # preparing DCCA array
+    # preparing DCCA_ot array
 
     if type(DCCA_of) == str:
         if DCCA_of == "all":
             DCCA_of =  np.ascontiguousarray(mat_index_comb(input_data, axis=1))
+    # ensuring data compatibility
+    DCCA_of = DCCA_of.astype(uint_c_type)
     c_DCCA_of = arr_2d_to_c(DCCA_of)
 
     
     # preparing tws array
-    tws = tws.astype(np.uintp)
+    tws = tws.astype(uint_c_type)
 
     # preparing output array
     F_DFA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], input_data.shape[1]), dtype=input_data.dtype))
@@ -97,8 +100,8 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
     # preparing data
     data_shape = input_data.shape
     try:
-        x_len = input_data.shape[0]
-        x_cnt = input_data.shape[1]
+        x_len = data_shape[0]
+        x_cnt = data_shape[1]
     except:
         x_len = input_data.size
         x_cnt = 1
@@ -123,8 +126,9 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
         # flatteing matrix
         P_DCCA_arr = np.ascontiguousarray(P_DCCA_arr.flatten())
 
+
     # calling functon  
-    _p_dcca(input_data, x_len, x_cnt, 
+    _p_dcca(input_data,  x_len, x_cnt, 
             tws, tws.size, 
             time_steps, 
             c_DCCA_of , DCCA_of.shape[0],
@@ -135,6 +139,9 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
             # P_DCCA output matrix
             P_DCCA_output_matrix
             )
+
+
+
     # reshaping P_DCCA output
     P_DCCA_arr = P_DCCA_arr.reshape(P_DCCA_shape)
 

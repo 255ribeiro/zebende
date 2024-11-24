@@ -2,11 +2,23 @@ import numpy as np
 from . import mat_index_comb
 from numpy.typing import NDArray
 
-def p_dcca_simple_to_matrix(simple_pdcca:NDArray[np.float64]) ->NDArray[np.float64]:
+def p_dcca_simple_to_matrix(simple_pdcca:NDArray[np.float64], DCCA_of:NDArray[np.int64] | None = None ) ->NDArray[np.float64]:
 
-    series_count = int(np.round((1 + np.sqrt(1 + 8 *simple_pdcca.shape[1]))/2, 0))
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
+    
+    if DCCA_of is None:
+        series_count = int(np.round((1 + np.sqrt(1 + 8 *simple_pdcca.shape[1]))/2, 0))
+    
+        DCCA_of = mat_index_comb(series_count)
+    else:
+        series_count = DCCA_of.flatten().max()+1
+
     tws_count = simple_pdcca.shape[0]
-    DCCA_of = mat_index_comb(series_count)
+
     shape = (series_count, series_count, tws_count)
     P_DCCA_arr = np.full(shape=shape,fill_value=np.nan, dtype=simple_pdcca.dtype)
     # fill diagonal with ones

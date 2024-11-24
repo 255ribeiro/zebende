@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.7"
+version = "0.1.83"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -18,25 +18,28 @@ classifiers =[
     ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-numpy = "^2.0.0"
+python = ">=3.10"
+numpy = ">=1.26"
 
 
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.2.2"
+
+pytest = "^8.3.3"
 pytest-coverage = "^0.0"
-taskipy = "^1.13.0"
-ruff = "^0.4.10"
+taskipy = "^1.14.0"
+ruff = "^0.8.0"
 ipykernel = "^6.29.5"
-pandas = "^2.2.2"
+pandas = "^2.2.3"
 
 [tool.poetry.group.doc.dependencies]
-mkdocs-material = "^9.5.27"
-mkdocstrings = "^0.25.1"
-mkdocstrings-python = "^1.10.5"
+
+mkdocs-material = "^9.5.45"
+mkdocstrings = "^0.27.0"
+mkdocstrings-python = "^1.12.2"
 
 [tool.ruff.lint]
+
 preview = true
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']
 
@@ -71,6 +74,7 @@ ppub = {cmd = "poetry publish", echo=true}
 pypi ={cmd = "task pbld && task ppub", echo=true}
 
 zrswlm = {cmd = "zrs && zrsl && zrsm", echo=true}
+
 
 
 

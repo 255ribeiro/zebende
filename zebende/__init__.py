@@ -26,4 +26,6 @@ from .dmcx2_from_p_dcca_matrix import dmcx2_from_p_dcca_matrix_2d as dmcx2_from_
 from .dmcx2_pure_python import dmcx2_pure_python as dmcx2_pure_python
 from .dmcx2 import dmcx2 as dmcx2
 
+from .print_pdcca_matrix_by_level import print_pdcca_matrix_by_level as print_pdcca_matrix_by_level
+
 
