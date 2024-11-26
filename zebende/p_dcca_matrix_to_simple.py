@@ -5,6 +5,14 @@ from . import mat_index_comb
 from numpy.typing import NDArray
 
 def p_dcca_matrix_to_simple(matrix_pdcca:NDArray[np.float64]) ->NDArray[np.float64]:
+    """_summary_
+
+    Args:
+        matrix_pdcca (NDArray[np.float64]): _description_
+
+    Returns:
+        NDArray[np.float64]: _description_
+    """    
     series_count = matrix_pdcca.shape[0]
     tws_count = matrix_pdcca.shape[2]
     DCCA_of = mat_index_comb(series_count)

@@ -4,10 +4,15 @@ from numpy.typing import NDArray
 
 def p_dcca_simple_to_matrix(simple_pdcca:NDArray[np.float64], DCCA_of:NDArray[np.int64] | None = None ) ->NDArray[np.float64]:
 
-    """_summary_
+    """Convert a simple (table) of  <span>&Rho;<sub>DCCA</sub></span> values to the matrix output.
+
+    Args:
+        simple_pdcca:NDArray[np.float64]: Table of <span>&Rho;<sub>DCCA</sub></span> outputs.
+        DCCA_of (np.ndarray | None, optional): The DCCA_of used for the <span>&Rho;<sub>DCCA</sub></span> calculations.
+        If None, the function will assume it was created with the Default option in the p_dcca function. Defaults to None.
 
     Returns:
-        _type_: _description_
+        NDArray[np.float64]: 3D matrix with the values of the <span>&Rho;<sub>DCCA</sub></span> of each time scale as a level.
     """
     
     if DCCA_of is None:

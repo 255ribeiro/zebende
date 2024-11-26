@@ -3,7 +3,17 @@ from numpy.typing import NDArray
 
 
 # time window array
-def time_windows(n_min: np.int32, n_max: int, exp_fac: np.float64 = 8.0, ensure_max = True) -> NDArray[np.int64]:
+def time_windows(n_min: int, n_max: int, exp_fac:float = 8.0, ensure_max:bool = True) -> NDArray[np.int64]:
+
+    """Generate an ordered array of time sclaes for the Detrended calculations.
+    Args:
+        n_min (int): Minimun value for a time window (box).
+        n_max (int): Maximun value for a time window (box).
+        exp_fac (float, optional): Exponencial factor to calculate successive time windows in the array. Defaults to 8.0.
+        ensure_max (bool, optional): Ensure that the Maximun value is. Defaults to True.
+    Returns:
+        NDArray[np.int64]: Time scales array.
+    """
     n = n_min
     tmp = []
     ir = 0

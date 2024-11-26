@@ -9,10 +9,20 @@ from .p_dcca_matrix_output import p_dcca_matrix_output
 
 
 # P_DCCA calculator
-def dfa(data, tws, time_steps=None ) -> NDArray[np.float64]:
+def dfa(data: NDArray[np.float64], tws: NDArray[np.int64]) -> NDArray[np.float64]:
+    
+    """Calculates the Detrended Fluctuation analysis (DFA) for one or more time series. 
+
+    Args:
+        data (NDArray[np.float64]): data matrix with one series per column.
+        tws (NDArray[np.int64]): 1D array of time windows.
+
+    Returns:
+        NDArray[np.float64]: DFA table.
+    """ 
         # setting time_steps in None is passed
-    if time_steps == None:
-        time_steps = np.arange(data.shape[0])
+
+    time_steps = np.arange(data.shape[0])
 
 
     # Global outputs
