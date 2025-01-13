@@ -16,7 +16,7 @@ ENUM_DMCx2_of = Literal['all-full', 'first-full']
 
 def dmcx2(input_data: NDArray[np.float64], 
           tws: NDArray[np.int64] | NDArray[np.float64], 
-          dmcx2_of: NDArray[np.float64] | list | ENUM_DMCx2_of = 'all-full'
+          dmcx2_of: NDArray[np.float64] | Literal['all-full', 'first-full'] = 'all-full'
            )-> tuple[
                                                             NDArray[np.float64],
                                                             NDArray[np.float64],
@@ -30,7 +30,7 @@ def dmcx2(input_data: NDArray[np.float64],
         Args:
             input_data (NDArray[np.float64]): _description_.
             tws (NDArray[np.int64] | NDArray[np.float64]): _description_.
-            dmcx2_of (NDArray[np.float64] | list | ENUM_DMCx2_of, optional): _description_. Defaults to 'all-full'.
+            dmcx2_of (NDArray[np.float64] | Literal['all-full', 'first-full'], optional): _description_. Defaults to 'all-full'.
             DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
 
         Returns:

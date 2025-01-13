@@ -8,8 +8,12 @@ def mat_index_comb(mat:NDArray[np.float64] | int, axis:int = 1) -> NDArray[np.ui
 
     """_summary_
 
+    Args:
+        mat (NDArray[np.float64], int ): Matrix of time series with one serie per column.
+        axis (int , optional):
+
     Returns:
-        _type_: _description_
+        (NDArray[np.uintp], None): _description_
     """
     if type(mat) == np.ndarray:
         return np.array(list(combinations(range(mat.shape[axis]), 2)), dtype=np.uintp)
@@ -17,3 +21,4 @@ def mat_index_comb(mat:NDArray[np.float64] | int, axis:int = 1) -> NDArray[np.ui
         return np.array(list(combinations(range(mat), 2)), dtype=np.uintp)
     else:
         print('mat of type {} not supported'.format(type(mat)))
+        return None
