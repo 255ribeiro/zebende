@@ -11,7 +11,7 @@ from .p_dcca_matrix_output import p_dcca_matrix_output
 ENUM_DCCA_of = Literal['all']
 
 # P_DCCA calculator
-def p_dcca(
+def p_dcca_pure_python(
     data: NDArray[np.float64], tws: NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
     # setting time_steps
