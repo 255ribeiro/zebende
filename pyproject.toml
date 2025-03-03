@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.86"
+version = "0.1.87"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -20,6 +20,7 @@ classifiers =[
 [tool.poetry.dependencies]
 python = ">=3.09,<4.0"
 numpy = ">=1.26, <3.0"
+
 
 
 

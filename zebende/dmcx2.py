@@ -52,10 +52,6 @@ def dmcx2(input_data: NDArray[np.float64],
         elif dmcx2_of == 'all-full':
             dmcx2_of = dmc_of_all_as_y(input_data)
     
-    test_dmcx2_of = dmcx2_of[:,1:]
-    assert (test_dmcx2_of[:,:-1] < test_dmcx2_of[:,1:]).all() == True , ("""
-dmcx2_of x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix it before passing the dmcx2_of values to zebende.dmcx2() function""")
-    del test_dmcx2_of
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
     DCCA_of = dcca_of_from_dmcx2_of(dmcx2_of)
