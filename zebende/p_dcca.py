@@ -16,12 +16,15 @@ uint_c_type = np.uintp
 
 ENUM_DCCA_of = Literal['all']
 
-def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_matrix: bool=False
-) -> tuple[NDArray[np.float64],     # DFA
-            NDArray[np.float64],    # DCCA
-            NDArray[np.float64]     # P_DCCA
-            ]:
-    
+def p_dcca(input_data: NDArray[np.float64], 
+           tws:  NDArray[np.int64] | NDArray[np.float64], 
+           DCCA_of: np.ndarray | ENUM_DCCA_of ="all", 
+           P_DCCA_output_matrix: bool=False
+        ) ->    tuple[
+                NDArray[np.float64],    # DFA
+                NDArray[np.float64],    # DCCA
+                NDArray[np.float64]     # P_DCCA
+                ]:
 
     """A function that calculates the 
        <span>&Rho;<sub>DCCA</sub></span>
@@ -126,7 +129,6 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
         # flatteing matrix
         P_DCCA_arr = np.ascontiguousarray(P_DCCA_arr.flatten())
 
-
     # calling functon  
     _p_dcca(input_data,  x_len, x_cnt, 
             tws, tws.size, 
@@ -140,11 +142,7 @@ def p_dcca(input_data: NDArray[np.float64], tws:  NDArray[np.int64] | NDArray[np
             P_DCCA_output_matrix
             )
 
-
-
     # reshaping P_DCCA output
     P_DCCA_arr = P_DCCA_arr.reshape(P_DCCA_shape)
 
-
-  
     return [F_DFA_arr, DCCA_arr, P_DCCA_arr]

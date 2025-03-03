@@ -60,12 +60,8 @@ dmcx2_of x values out of order: use zebende.ordering_x_dmcx2_of(dmcx2_of) to fix
     # creating ndarray for P_DCCA calculations based on the DMCx2 array
     DCCA_of = dcca_of_from_dmcx2_of(dmcx2_of)
 
-
     # P_DCCA calculations
     F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(input_data=input_data, tws=tws, DCCA_of=DCCA_of,  P_DCCA_output_matrix = True)
-
-    # DMCx2 output matrix
-    DMCx2_arr = np.full(shape=(tws.shape[0], dmcx2_of.shape[0]), fill_value=np.nan, dtype=input_data.dtype)
 
     DMCx2_arr = dmcx2_from_p_dcca_matrix(P_DCCA_arr, dmcx2_of)
 

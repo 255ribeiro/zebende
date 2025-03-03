@@ -34,10 +34,10 @@ def dmcx2_from_p_dcca_matrix_2d(P_DCCA_arr_2D: NDArray[np.float64],  dmcx2_of_1D
     Returns:
         <span>DMC<sub>x</sub><sup>2</sup></span>([float64]): _description_
     """    
-    y_indexes = dmcx2_of_1D[0:1]
+    y_index = dmcx2_of_1D[0:1]
     x_indexes = dmcx2_of_1D[1:]
 
     mat_x = P_DCCA_arr_2D[np.ix_(x_indexes, x_indexes)]
-    vec_y = P_DCCA_arr_2D[np.ix_(x_indexes, y_indexes)]
+    vec_y = P_DCCA_arr_2D[np.ix_(x_indexes, y_index)]
 
     return vec_y.T @ np.linalg.inv(mat_x) @ vec_y

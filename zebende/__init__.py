@@ -29,3 +29,6 @@ from .dmcx2 import dmcx2 as dmcx2
 from .print_pdcca_matrix_by_level import print_pdcca_matrix_by_level as print_pdcca_matrix_by_level
 
 
+from .data import s001 as s001
+
+
