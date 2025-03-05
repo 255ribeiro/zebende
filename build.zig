@@ -15,21 +15,8 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
-    // const src_file_name = "zebende";
-    // const src_file_name = "zebende_transpose";
-    // const src_file_name = "zebende_det_alloc_only";
-    // const src_file_name = "zebende_n_optimization";
-    const src_file_name = "zebende_n_optimization_time_op";
-    // const src_file_name = "zebende_2d_data_C";
-    // const src_file_name = "zebende_1d_data_C";
-
-    // const src_file_name = "zebende_teste";
-
-    // -- Parallel
-    // const src_file_name = "zebende_parallel";
-    // const src_file_name = "zebende_parallel_handlers";
-    // const src_file_name = "zebende_parallel_pdcca_end";
-    // const src_file_name = "zebende_threads";
+    // const src_file_name = "zebende_basic";
+    const src_file_name = "zebende_otp";
 
     const lib = b.addSharedLibrary(.{
         .name = "zebendezig",

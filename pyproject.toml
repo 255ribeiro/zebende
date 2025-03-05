@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "zebende"
-version = "0.1.86"
+version = "0.1.87"
 description = "DFA, DCCA, Pdcca and Dmcx2 calculations in python"
 license = "MIT"
 authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
@@ -20,6 +20,7 @@ classifiers =[
 [tool.poetry.dependencies]
 python = ">=3.09,<4.0"
 numpy = ">=1.26, <3.0"
+
 
 
 
@@ -62,9 +63,9 @@ lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
 docs = 'mkdocs serve'
 site = 'mkdocs gh-deploy'
-pre_test = 'task lint'
+# pre_test = 'task lint'
 test = 'pytest -s -x --cov=fast_zero -vv'
-post_test = 'coverage html'
+# post_test = 'coverage html'
 zrs = {cmd = "zig build -Doptimize=ReleaseSafe", echo=true}
 zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
 zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}

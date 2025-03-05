@@ -12,7 +12,10 @@ ENUM_DCCA_of = Literal['all']
 
 # P_DCCA calculator
 def p_dcca_pure_python(
-    data: NDArray[np.float64], tws: NDArray[np.int64] | NDArray[np.float64], DCCA_of: np.ndarray | ENUM_DCCA_of ="all", P_DCCA_output_format="simple"
+    data: NDArray[np.float64], 
+    tws: NDArray[np.int64] | NDArray[np.float64], 
+    DCCA_of: np.ndarray | ENUM_DCCA_of ="all",
+    P_DCCA_output_matrix: bool=False
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
     # setting time_steps
     time_steps = np.arange(data.shape[0])
@@ -24,13 +27,13 @@ def p_dcca_pure_python(
     DCCA_arr = np.zeros(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=data.dtype)
     # P_DCCA global output format and function
     # simple output
-    if P_DCCA_output_format == "simple":
+    if P_DCCA_output_matrix == False:
         # output array
         P_DCCA_arr = np.full(shape=(tws.shape[0], DCCA_of.shape[0]) ,fill_value=np.nan, dtype=data.dtype)
         # output function
-        P_DCCA_output_funtion = p_dcca_simple_output
+        P_DCCA_output_function = p_dcca_simple_output
     # matrix output
-    elif P_DCCA_output_format == "matrix":
+    elif P_DCCA_output_matrix == True:
         # output matrix
         P_DCCA_arr = np.full(
             shape=(DCCA_of.max() + 1, DCCA_of.max() + 1, tws.shape[0]),fill_value=np.nan, dtype=data.dtype
