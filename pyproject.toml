@@ -63,20 +63,20 @@ lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
 docs = 'mkdocs serve'
 site = 'mkdocs gh-deploy'
-# pre_test = 'task lint'
+
 test = 'pytest -s -x --cov=fast_zero -vv'
-# post_test = 'coverage html'
+
 zrs = {cmd = "zig build -Doptimize=ReleaseSafe", echo=true}
 zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
 zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=true}
 zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=aarch64-macos", echo=true}
-zrsmi = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-macos -", echo=true}
+zrsmi = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-macos", echo=true}
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
 pbld = {cmd = "poetry build", echo=true}
 ppub = {cmd = "poetry publish", echo=true}
 pypi ={cmd = "task pbld && task ppub", echo=true}
 
-zrswlm = {cmd = "zrs && zrsl && zrsm", echo=true}
+zrswlm = {cmd = "task zrs && task zrsl && task zrsm", echo=true}
 
 
 
