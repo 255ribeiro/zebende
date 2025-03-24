@@ -1,0 +1,3 @@
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA512          DB51DB515F91B8C8A777395CDAE27720767E97E50CD50577B1BE6C2F3C9A20881E532… D:\gitrepos\zebende\src\zebende_opt.zig
