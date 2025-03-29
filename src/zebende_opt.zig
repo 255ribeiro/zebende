@@ -260,12 +260,12 @@ export fn p_dcca(
 
             if (P_dcca_matrix_output_flag == false) {
                 pdccaSimpleOutput(n_index, F_DFA_arr, DCCA_arr, DCCA_of, DCCA_of_n_rows, dcca_pair,
-                // output
-                P_DCCA_arr);
+                    // output
+                    P_DCCA_arr);
             } else {
                 pdccaMatrixOutput(n_index, tws_len, data_count, F_DFA_arr, DCCA_arr, DCCA_of, dcca_pair,
-                // output
-                P_DCCA_arr);
+                    // output
+                    P_DCCA_arr);
             }
         }
 
@@ -322,7 +322,8 @@ pub fn pdccaSimpleOutput(
     // output
     P_DCCA_arr: [*c]f64,
 ) void {
-    P_DCCA_arr[n_index * DCCA_of_n_rows + dcca_pair] = DCCA_arr[n_index][dcca_pair] / (F_DFA_arr[n_index][DCCA_of[dcca_pair][0]] * F_DFA_arr[n_index][DCCA_of[dcca_pair][1]]);
+    P_DCCA_arr[n_index * DCCA_of_n_rows + dcca_pair] = DCCA_arr[n_index][dcca_pair] /
+        (F_DFA_arr[n_index][DCCA_of[dcca_pair][0]] * F_DFA_arr[n_index][DCCA_of[dcca_pair][1]]);
 }
 
 pub fn pdccaMatrixOutput(

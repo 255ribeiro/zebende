@@ -32,3 +32,5 @@ int_data.shape[0]
 
 # %%
 dfa , dcca, pdcca = zb.p_dcca(int_data, tws)
+
+# %%
