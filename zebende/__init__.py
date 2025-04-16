@@ -7,10 +7,13 @@ from .time_windows import time_windows as time_windows
 
 from .mat_index_comb import mat_index_comb as mat_index_comb
 
+from .dcca import dcca as dcca
+
 from .p_dcca import p_dcca as p_dcca
 from .p_dcca_pure_python import p_dcca_pure_python as p_dcca_pure_python
 
 from .dfa import dfa as dfa
+from .dfa_pure_python import dfa_pure_python as dfa_pure_python
 from .dcca_of_from_dmcx2_of import dcca_of_from_dmcx2_of as dcca_of_from_dmcx2_of
 
 from .p_dcca_simple_output import p_dcca_simple_output as p_dcca_simple_output
