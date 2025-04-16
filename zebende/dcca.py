@@ -36,7 +36,7 @@ def dcca(input_data: NDArray[np.float64],
 
 
         Returns:
-            <span>A tuple of 3 matrices:</span>
+            <span>A tuple of 2 matrices:</span>
             DFA(NDArray[np.float64]):_description_. 
             DCCA(NDArray[np.float64]):_description_.
     """
