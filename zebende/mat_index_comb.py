@@ -4,7 +4,7 @@ import numpy as np
 
 from numpy.typing import NDArray
 
-def mat_index_comb(mat:NDArray[np.float64] | int, axis:int = 1) -> NDArray[np.uintp] | None:
+def mat_index_comb(mat:NDArray[np.float64] | int, axis:int = 0) -> NDArray[np.uintp] | None:
 
     """_summary_
 

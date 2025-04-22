@@ -15,8 +15,12 @@ def p_dcca_pure_python(
     data: NDArray[np.float64], 
     tws: NDArray[np.int64] | NDArray[np.float64], 
     DCCA_of: np.ndarray | ENUM_DCCA_of ="all",
+    axis: int = 0,
     P_DCCA_output_matrix: bool=False
 ) -> tuple[NDArray[np.float64], NDArray[np.float64], NDArray[np.float64]]:
+    
+    if axis == 0:
+        data = data.T
     # setting time_steps
     time_steps = np.arange(data.shape[0])
     if type(DCCA_of) == str:

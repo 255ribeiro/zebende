@@ -18,7 +18,8 @@ ENUM_DCCA_of = Literal['all']
 
 def p_dcca(input_data: NDArray[np.float64], 
            tws:  NDArray[np.int64] | NDArray[np.float64], 
-           DCCA_of: np.ndarray | ENUM_DCCA_of ="all", 
+           DCCA_of: np.ndarray | ENUM_DCCA_of ="all",
+           axis = 0,
            P_DCCA_output_matrix: bool=False
         ) ->    tuple[
                 NDArray[np.float64],    # DFA
@@ -85,7 +86,7 @@ def p_dcca(input_data: NDArray[np.float64],
 
     if type(DCCA_of) == str:
         if DCCA_of == "all":
-            DCCA_of =  np.ascontiguousarray(mat_index_comb(input_data, axis=1))
+            DCCA_of =  np.ascontiguousarray(mat_index_comb(input_data, axis=axis))
     # ensuring data compatibility
     DCCA_of = DCCA_of.astype(uint_c_type)
     c_DCCA_of = arr_2d_to_c(DCCA_of)
@@ -95,20 +96,25 @@ def p_dcca(input_data: NDArray[np.float64],
     tws = tws.astype(uint_c_type)
 
     # preparing output array
-    F_DFA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], input_data.shape[1]), dtype=input_data.dtype))
+    F_DFA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], input_data.shape[axis]), dtype=input_data.dtype))
     c_DFA_arr = arr_2d_to_c(F_DFA_arr)
     DCCA_arr = np.ascontiguousarray(np.zeros(shape=(tws.shape[0], DCCA_of.shape[0]), dtype=input_data.dtype))
     c_DCCA_arr = arr_2d_to_c(DCCA_arr)
 
     # preparing data
     data_shape = input_data.shape
-    try:
+
+    if axis == 0:
+        x_cnt = data_shape[0]
+        x_len = data_shape[1]
+
+        input_data = np.ascontiguousarray(input_data.flatten())
+
+    if axis == 1:
         x_len = data_shape[0]
         x_cnt = data_shape[1]
-    except:
-        x_len = input_data.size
-        x_cnt = 1
-    input_data = np.ascontiguousarray(np.asfortranarray(input_data).flatten(order="K"))
+
+        input_data = np.ascontiguousarray(np.asfortranarray(input_data).flatten(order="K"))
 
     time_steps = np.ascontiguousarray(np.arange(x_len, dtype=input_data.dtype))
 

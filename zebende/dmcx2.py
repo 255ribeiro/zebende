@@ -16,7 +16,8 @@ ENUM_DMCx2_of = Literal['all-full', 'first-full']
 
 def dmcx2(input_data: NDArray[np.float64], 
           tws: NDArray[np.int64] | NDArray[np.float64], 
-          dmcx2_of: NDArray[np.float64] | Literal['all-full', 'first-full'] = 'all-full'
+          dmcx2_of: NDArray[np.float64] | Literal['all-full', 'first-full'] = 'all-full',
+           axis: int = 0
            )-> tuple[
                                                             NDArray[np.float64],
                                                             NDArray[np.float64],
@@ -47,7 +48,7 @@ def dmcx2(input_data: NDArray[np.float64],
 
         # creating ndarray of y and x values for DMCx2 calculations
         if dmcx2_of == 'first-full':
-            dmcx2_of = np.array( [np.arange(input_data.shape[1])])
+            dmcx2_of = np.array( [np.arange(input_data.shape[axis])])
         # creating ndarray of y and x values for DMCx2 calculations
         elif dmcx2_of == 'all-full':
             dmcx2_of = dmc_of_all_as_y(input_data)
