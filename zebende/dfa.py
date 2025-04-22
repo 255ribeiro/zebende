@@ -14,10 +14,10 @@ uint_c_type = np.uintp
 
 ENUM_DCCA_of = Literal['all']
 
-def dfa(input_data: NDArray[np.float64], 
-           tws:  NDArray[np.int64] | NDArray[np.float64],
-           axis: int = 0
-           
+def dfa(
+        input_data: NDArray[np.float64], 
+        tws:  NDArray[np.int64] | NDArray[np.float64],
+        axis: int = 0          
         ) ->    tuple[
                 NDArray[np.float64],    # DFA
                 ]:
