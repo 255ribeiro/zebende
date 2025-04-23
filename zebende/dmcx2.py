@@ -33,6 +33,7 @@ def dmcx2(input_data: NDArray[np.float64],
             tws (NDArray[np.int64] | NDArray[np.float64]): _description_.
             dmcx2_of (NDArray[np.float64] | Literal['all-full', 'first-full'], optional): _description_. Defaults to 'all-full'.
             DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+            axis (int): axis of the input_data matrix that contains the values for each time series. Defalts to 0.
 
         Returns:
             <span>A tuple of 4 matrices:</span><br>
@@ -51,7 +52,7 @@ def dmcx2(input_data: NDArray[np.float64],
             dmcx2_of = np.array( [np.arange(input_data.shape[axis])])
         # creating ndarray of y and x values for DMCx2 calculations
         elif dmcx2_of == 'all-full':
-            dmcx2_of = dmc_of_all_as_y(input_data)
+            dmcx2_of = dmc_of_all_as_y(input_data, axis=axis)
     
 
     # creating ndarray for P_DCCA calculations based on the DMCx2 array

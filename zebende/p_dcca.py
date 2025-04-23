@@ -35,8 +35,8 @@ def p_dcca(input_data: NDArray[np.float64],
             input_data (NDArray[np.float64]): 2D array of times series integrated data.
             tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of time scales.
             DCCA_of (np.ndarray | list | None, optional): _description_. Defaults to None.
+            axis (int): axis of the input_data matrix that contains the values for each time series. Defalts to 0.
             P_DCCA_output_matrix (bool, optional): _description_. Defaults to False.
-
 
         Returns:
             <span>A tuple of 3 matrices:</span>

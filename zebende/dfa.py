@@ -29,6 +29,7 @@ def dfa(
         Args:
             input_data (NDArray[np.float64]): 2D array of times series integrated data.
             tws (NDArray[np.float64] | NDArray[np.float64]): 1D array of time scales.
+            axis (int): axis of the input_data matrix that contains the values for each time series. Defalts to 0.
 
         Returns:
             DFA(NDArray[np.float64]):_description_. 
