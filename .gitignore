@@ -181,3 +181,18 @@ pyrightconfig.json
 
 # Generated using ignr.py - github.com/Antrikshy/ignr.py
 
+# Created by https://www.toptal.com/developers/gitignore/api/Zig
+# Edit at https://www.toptal.com/developers/gitignore?templates=Zig
+
+### zig ###
+# Zig programming language
+
+zig-cache/
+zig-out/
+build/
+build-*/
+docgen_tmp/
+
+# End of https://www.toptal.com/developers/gitignore/api/Zig
+
+# Generated using ignr.py - github.com/Antrikshy/ignr.py
