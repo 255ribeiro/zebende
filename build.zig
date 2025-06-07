@@ -1,9 +1,30 @@
 const std = @import("std");
 
+const targets: []const std.Target.Query = &.{
+    .{ .cpu_arch = .aarch64, .os_tag = .macos },
+    .{ .cpu_arch = .aarch64, .os_tag = .linux },
+    .{ .cpu_arch = .x86_64, .os_tag = .linux, .abi = .gnu },
+    .{ .cpu_arch = .x86_64, .os_tag = .linux, .abi = .musl },
+    .{ .cpu_arch = .x86_64, .os_tag = .windows },
+};
+
+/// Print all targets for debugging (optional)
+fn printTargets() void {
+    for (targets) |t| {
+        // const cpu_name = std.Target.cpu.archToString(t.cpu_arch);
+        // const os_name = std.Target.os.tagToString(t.os_tag);
+        // std.Target.Query.parseCpuArch()
+        // std.debug.print("Target CPU: {}\n", .{cpu_name});
+        // std.debug.print("Target OS: {}\n", .{os_name});
+        std.debug.print("Target {any}\n", .{t.cpu_arch});
+    }
+}
 // Although this function looks imperative, note that its job is to
 // declaratively construct a build graph that will be executed by an external
-// runner.
 pub fn build(b: *std.Build) void {
+    // Print all targets for debugging (optional)
+    printTargets();
+
     // Standard target options allows the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
     // means any target is allowed, and the default is native. Other options
@@ -19,6 +40,8 @@ pub fn build(b: *std.Build) void {
     const src_file_name = "zebende_opt";
 
     const lib = b.addSharedLibrary(.{
+        .target = target,
+        .optimize = optimize,
         .name = "zebendezig",
         // In this case the main source file is merely a path, however, in more
         // complicated build scripts, this could be a generated file.
@@ -26,9 +49,6 @@ pub fn build(b: *std.Build) void {
         // .root_source_file = b.path("src/zebende_det_alloc_only.zig"),
         // .root_source_file = b.path("src/zebende.zig"),
         .root_source_file = b.path("src/" ++ src_file_name ++ ".zig"),
-
-        .target = target,
-        .optimize = optimize,
 
         // .link_libc = true,
     });

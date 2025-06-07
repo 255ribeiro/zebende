@@ -465,13 +465,13 @@ export fn dcca(
         print("elapsed det time {}\n", .{elapsed_det_time});
 
         //
-        const start_filldfa_time = Now_ms();
+        const start_fill_dfa_time = Now_ms();
         for (0..data_count) |sr_index| {
             F_DFA_arr[n_index][sr_index] = @sqrt(F_DFA_arr[n_index][sr_index] / @as(f64, @floatFromInt(no_of_windows)));
         }
 
-        const elapsed_filldfa_time = Now_ms() - start_filldfa_time;
-        print("elapsed fill dfa time {}\n", .{elapsed_filldfa_time});
+        const elapsed_fill_dfa_time = Now_ms() - start_fill_dfa_time;
+        print("elapsed fill dfa time {}\n", .{elapsed_fill_dfa_time});
 
         const start_dcca_time = Now_ms();
         for (0..DCCA_of_n_rows) |dcca_pair| {
