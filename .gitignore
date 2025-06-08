@@ -186,8 +186,8 @@ pyrightconfig.json
 
 ### zig ###
 # Zig programming language
-
 zig-cache/
+.zig-cache/
 zig-out/
 build/
 build-*/
