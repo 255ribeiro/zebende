@@ -72,6 +72,8 @@ zrsl = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux", echo=tru
 zrsm = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=aarch64-macos", echo=true}
 zrsmi = {cmd = "zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-macos", echo=true}
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
+
+libcp = {cmd = "python ./dev_utils/copy_lib.py"}
 pbld = {cmd = "poetry build", echo=true}
 ppub = {cmd = "poetry publish", echo=true}
 pypi ={cmd = "task pbld && task ppub", echo=true}

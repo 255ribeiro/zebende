@@ -59,7 +59,7 @@ def dmcx2(input_data: NDArray[np.float64],
     DCCA_of = dcca_of_from_dmcx2_of(dmcx2_of)
 
     # P_DCCA calculations
-    F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(input_data=input_data, tws=tws, DCCA_of=DCCA_of,  P_DCCA_output_matrix = True)
+    F_DFA_arr, DCCA_arr, P_DCCA_arr = p_dcca(input_data=input_data, tws=tws, DCCA_of=DCCA_of,  P_DCCA_output_matrix = True, axis=axis)
 
     DMCx2_arr = dmcx2_from_p_dcca_matrix(P_DCCA_arr, dmcx2_of)
 

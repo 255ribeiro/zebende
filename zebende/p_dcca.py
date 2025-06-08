@@ -7,6 +7,8 @@ from typing import Literal
 
 from . import mat_index_comb
 
+from . import get_platform
+
 from .array_to_c_pointer_convert import arr_2d_to_c
 
 from numpy.typing import NDArray
@@ -50,15 +52,9 @@ def p_dcca(input_data: NDArray[np.float64],
 
     # setting lib path
 
-    sys_dict = {'Windows': 'zebendezig.dll', 'Linux': 'libzebendezig.so', 'Darwin': 'libzebendezig.dylib'}
 
-    sys_info = platform.uname()
 
-    lib_folder = Path(__file__).parent / 'zig_libs'
-
-    lib_file = lib_folder / sys_dict[sys_info.system]
-
-    zz = ctypes.cdll.LoadLibrary(lib_file)
+    zz = ctypes.cdll.LoadLibrary(get_platform())
 
     # outputs types
     c_2d_any_1d_uint = ndpointer(dtype = uint_c_type, ndim=1, flags='C')
