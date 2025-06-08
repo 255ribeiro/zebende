@@ -17,10 +17,7 @@ const targets: []const std.Target.Query = &.{
 
 pub fn build(b: *std.Build) !void {
     const optimize = b.standardOptimizeOption(.{});
-
-
     const target = b.standardTargetOptions(.{});
-    std.debug.print("{}", .{target})
 
     if (target.query.cpu_arch == null) {
         for (targets) |t| {
