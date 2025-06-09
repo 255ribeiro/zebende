@@ -8,8 +8,11 @@ def integrated_series(mat_series:NDArray[np.float64], axis:int = 0, return_mean:
 
     Args:
         mat_series (NDArray[np.float64]): Matrix of time series with one serie per column.
-        axis (int): axis of the input_data matrix that contains the values for each time series. Defalts to 0.
-        return_mean (bool): If an array containing the means of each series should be returned. Defaults to False.
+        axis (int): axis of the input_data matrix that contains the values for each time series
+                    if the series are defined as rows, use axis=0, if the series are in the column, use axis=1.
+                    Defalts axis=0.
+        return_mean (bool): If an array containing the means of each series should be returned.
+                    Defaults to False.
 
     Returns:
         NDArray[np.float64]: Matrix of integrated time series with one integrated time series per column.
