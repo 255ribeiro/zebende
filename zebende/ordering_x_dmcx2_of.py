@@ -11,7 +11,7 @@ def ordering_x_dmcx2_of(dmcx2_of:NDArray[np.int64])-> NDArray[np.int64]:
     Returns:
         NDArray[np.int64]: dmcx2_of NDArray with the independent variables ordered.
     """
-    print(type(dmcx2_of))
+    
     if   type(dmcx2_of) == np.ndarray:
         if dmcx2_of.ndim == 2:
             y_serie = dmcx2_of[:, 0]
