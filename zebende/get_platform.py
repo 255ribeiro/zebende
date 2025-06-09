@@ -13,7 +13,7 @@ def check_architecture():
 
 def get_platform():
 
-    sys_dict = {'windows': 'windows/zebendezig.dll', 'linux': 'linux-gnu/libzebendezig.so', 'darwin': 'macos/libzebendezig.dylib'}
+    sys_dict = {'windows': 'windows/zebendezig.dll', 'linux': 'linux/libzebendezig.so', 'darwin': 'macos/libzebendezig.dylib'}
 
     sys_info = platform.uname()
 
