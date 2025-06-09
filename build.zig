@@ -16,10 +16,11 @@ const targets: []const std.Target.Query = &.{
 };
 
 pub fn build(b: *std.Build) !void {
+    const ball = b.option(bool, "ball", "build for all platforms") orelse false;
     const optimize = b.standardOptimizeOption(.{});
     const target = b.standardTargetOptions(.{});
 
-    if (target.query.cpu_arch == null) {
+    if (ball) {
         for (targets) |t| {
             const lib = b.addSharedLibrary(.{
                 .name = lib_name,
