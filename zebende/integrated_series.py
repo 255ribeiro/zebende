@@ -18,6 +18,7 @@ def integrated_series(mat_series:NDArray[np.float64], axis:int = 0, return_mean:
         mat_series =  mat_series.T
         series_means = mat_series.mean(axis=0)
         out = (mat_series - series_means).cumsum(axis=0)
+        out = out.T
         mat_series =  mat_series.T
 
     elif axis == 1:
