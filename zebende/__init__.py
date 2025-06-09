@@ -6,7 +6,6 @@ from .integrated_series import integrated_series as integrated_series
 from .time_windows import time_windows as time_windows
 
 from .mat_index_comb import mat_index_comb as mat_index_comb
-from .get_platform import get_platform as get_platform
 
 from .dcca import dcca as dcca
 
