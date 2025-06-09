@@ -24,5 +24,5 @@ def get_platform():
     return lib_file
 
 
-if '__name__' == '__name__':
+if __name__ == '__main__':
     print(get_platform())

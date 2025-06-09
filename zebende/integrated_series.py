@@ -2,7 +2,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 # integrates series
-def integrated_series(mat_series:NDArray[np.float64], axis:int = 0) -> NDArray[np.float64]:
+def integrated_series(mat_series:NDArray[np.float64], axis:int = 0, return_mean:bool = False) -> NDArray[np.float64]:
     """Returns a matrix of integrates series from a matrix of time series.
         The integrates series is a cumulative sum of the values of the series subtracted by the mean.
 
@@ -15,9 +15,16 @@ def integrated_series(mat_series:NDArray[np.float64], axis:int = 0) -> NDArray[n
     """
 
     if axis == 0:
-        out = (mat_series - mat_series.mean(axis=1).T).cumsum(axis=1)
+        mat_series =  mat_series.T
+        series_means = mat_series.mean(axis=0)
+        out = (mat_series - series_means).cumsum(axis=0)
+        mat_series =  mat_series.T
 
-    elif axis == 1: 
-        out = (mat_series - mat_series.mean(axis=0)).cumsum(axis=0)
+    elif axis == 1:
+        series_means = mat_series.mean(axis=0)
+        out = (mat_series - series_means).cumsum(axis=0)
     
-    return out
+    if return_mean == True:
+        return out,  series_means
+    else:
+        return out

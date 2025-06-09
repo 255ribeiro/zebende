@@ -1,13 +1,11 @@
-import platform
 import ctypes
-from pathlib import Path
 
 import numpy as np
 from typing import Literal
 
 from . import mat_index_comb
 
-from . import get_platform
+from .get_platform import get_platform
 
 from .array_to_c_pointer_convert import arr_2d_to_c
 
