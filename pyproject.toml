@@ -78,7 +78,7 @@ pbld = {cmd = "poetry build", echo=true}
 ppub = {cmd = "poetry publish", echo=true}
 pypi ={cmd = "task pbld && task ppub", echo=true}
 
-zba = {cmd = "zig build -Doptimize=ReleaseSafe -Dball --summary all", echo=true}
+zba = {cmd = "zig build -Doptimize=ReleaseSafe -Dball=true --summary all", echo=true}
 
 zrswlm = {cmd = "task zrs && task zrsl && task zrsm && task zrsmi", echo=true}
 
