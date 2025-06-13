@@ -12,8 +12,6 @@ const targets: []const std.Target.Query = &.{
     .{ .cpu_arch = .x86_64, .os_tag = .windows },
     .{ .cpu_arch = .x86_64, .os_tag = .macos },
     .{ .cpu_arch = .x86_64, .os_tag = .linux },
-    // .{ .cpu_arch = .x86_64, .os_tag = .linux, .abi = .gnu },
-    // .{ .cpu_arch = .x86_64, .os_tag = .linux, .abi = .musl },
 };
 
 pub fn build(b: *std.Build) !void {
@@ -48,6 +46,14 @@ pub fn build(b: *std.Build) !void {
             .root_source_file = b.path("src/" ++ src_file_name ++ ".zig"),
         });
 
-        b.installArtifact(lib);
+        const target_output = b.addInstallArtifact(lib, .{
+            .dest_dir = .{
+                .override = .{
+                    .custom = "./x86_64-windows/",
+                },
+            },
+        });
+
+        b.getInstallStep().dependOn(&target_output.step);
     }
 }
