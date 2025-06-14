@@ -12,12 +12,14 @@ const targets: []const std.Target.Query = &.{
 };
 
 pub fn build(b: *std.Build) !void {
-    var src_file_name: []const u8 = "zebende_opt";
+    var src_file_name: []const u8 = undefined;
 
     const ball = b.option(bool, "ball", "build for all platforms") orelse false;
     const basic = b.option(bool, "basic", "build basic algorithm") orelse false;
     if (basic) {
         src_file_name = "zebende_basic";
+    } else {
+        src_file_name = "zebende_opt";
     }
 
     const optimize = b.standardOptimizeOption(.{});
