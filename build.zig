@@ -24,7 +24,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
 
     // creating path string
-    const src_path = std.fmt.allocPrint(b.allocator, "src/{s}.zig", .{src_file_name}) catch unreachable;
+    const src_path = try std.fmt.allocPrint(b.allocator, "src/{s}.zig", .{src_file_name});
 
     if (ball) {
         for (targets) |t| {
@@ -55,7 +55,7 @@ pub fn build(b: *std.Build) !void {
 
         const cpu_arch = @tagName(target.result.cpu.arch);
         const os_tag = @tagName(target.result.os.tag);
-        const out_path_str = std.fmt.allocPrint(b.allocator, "./{s}-{s}/", .{ cpu_arch, os_tag }) catch unreachable;
+        const out_path_str = try std.fmt.allocPrint(b.allocator, "./{s}-{s}/", .{ cpu_arch, os_tag });
 
         const target_output = b.addInstallArtifact(lib, .{
             .dest_dir = .{
