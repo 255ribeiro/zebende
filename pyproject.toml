@@ -80,6 +80,8 @@ pypi ={cmd = "task pbld && task ppub", echo=true}
 
 zba = {cmd = "zig build -Doptimize=ReleaseSafe -Dball=true --summary all && task libcp", echo=true}
 
+zbab = {cmd = "zig build -Doptimize=ReleaseSafe -Dbasic -Dball=true --summary all && task libcp", echo=true}
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
