@@ -16,17 +16,15 @@ pub fn build(b: *std.Build) !void {
 
     const ball = b.option(bool, "ball", "build for all platforms") orelse false;
     const basic = b.option(bool, "basic", "build basic algorithm") orelse false;
-
-    const optimize = b.standardOptimizeOption(.{});
-    const target = b.standardTargetOptions(.{});
     if (basic) {
         src_file_name = "zebende_basic";
     }
 
+    const optimize = b.standardOptimizeOption(.{});
+    const target = b.standardTargetOptions(.{});
+
     // creating path string
-    const allocator = std.heap.page_allocator;
-    const src_path = try std.mem.concat(allocator, u8, &.{ "src/", src_file_name, ".zig" });
-    defer allocator.free(src_path);
+    const src_path = std.fmt.allocPrint(b.allocator, "src/{s}.zig", .{src_file_name}) catch unreachable;
 
     if (ball) {
         for (targets) |t| {
@@ -55,10 +53,14 @@ pub fn build(b: *std.Build) !void {
             .root_source_file = b.path(src_path),
         });
 
+        const cpu_arch = @tagName(target.result.cpu.arch);
+        const os_tag = @tagName(target.result.os.tag);
+        const out_path_str = std.fmt.allocPrint(b.allocator, "./{s}-{s}/", .{ cpu_arch, os_tag }) catch unreachable;
+
         const target_output = b.addInstallArtifact(lib, .{
             .dest_dir = .{
                 .override = .{
-                    .custom = "./x86_64-windows/",
+                    .custom = out_path_str,
                 },
             },
         });
