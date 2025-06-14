@@ -59,26 +59,36 @@ addopts = "--doctest-modules"
 
 
 [tool.taskipy.tasks]
+
 lint = 'ruff check . && ruff check . --diff'
 format = 'ruff check . --fix && ruff format .'
 docs = 'mkdocs serve'
 site = 'mkdocs gh-deploy'
 
+# run tests
 test = 'pytest -s -x --cov=fast_zero -vv'
 
-zrs = {cmd = "zig build -Doptimize=ReleaseSafe", echo=true}
-zrf = {cmd = "zig build -Doptimize=ReleaseFast", echo=true}
-
+# Clear zig output folders
 zcl = {cmd = "python ./dev_utils/clean_zig_out.py"}
+# Copy lib files to zebende package folder
 libcp = {cmd = "python ./dev_utils/copy_lib.py"}
 
-pbld = {cmd = "poetry build", echo=true}
-ppub = {cmd = "poetry publish", echo=true}
-pypi ={cmd = "task pbld && task ppub", echo=true}
+# Build native release safe and copy to zebende package folder
+zrs = {cmd = "zig build -Doptimize=ReleaseSafe && task libcp", echo=true}
+# Build native release fast and copy to zebende package folder
+zrf = {cmd = "zig build -Doptimize=ReleaseFast && task libcp", echo=true}
 
+# Build opt version for all platforms
 zba = {cmd = "zig build -Doptimize=ReleaseSafe -Dball=true --summary all && task libcp", echo=true}
-
+# Build basic version for all platforms
 zbab = {cmd = "zig build -Doptimize=ReleaseSafe -Dbasic -Dball=true --summary all && task libcp", echo=true}
+
+# build for pypi
+pbld = {cmd = "poetry build", echo=true}
+# upload to pypi
+ppub = {cmd = "poetry publish", echo=true}
+# build and upload to pypi
+pypi ={cmd = "task pbld && task ppub", echo=true}
 
 [build-system]
 requires = ["poetry-core"]
