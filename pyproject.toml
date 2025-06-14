@@ -21,9 +21,6 @@ classifiers =[
 python = ">=3.09,<4.0"
 numpy = ">=1.26, <3.0"
 
-
-
-
 [tool.poetry.group.dev.dependencies]
 
 pytest = "^8.3.3"
