@@ -34,7 +34,7 @@ export fn p_dcca(
 
     // Allocation setup -- start
 
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa = std.heap.DebugAllocator(.{}){};
     defer _ = gpa.deinit();
 
     // Allocation setup -- end

@@ -169,7 +169,7 @@ export fn p_dcca(
     });
 
     // Allocation setup -- start
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa = std.heap.DebugAllocator(.{}){};
     defer _ = gpa.deinit();
     var arena = std.heap.ArenaAllocator.init(gpa.allocator());
     const allocator = arena.allocator();
@@ -302,7 +302,7 @@ export fn dcca(
     });
 
     // Allocation setup -- start
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+    var gpa = std.heap.DebugAllocator(.{}){};
     defer _ = gpa.deinit();
     var arena = std.heap.ArenaAllocator.init(gpa.allocator());
     const allocator = arena.allocator();
