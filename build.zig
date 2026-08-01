@@ -30,11 +30,14 @@ pub fn build(b: *std.Build) !void {
 
     if (ball) {
         for (targets) |t| {
-            const lib = b.addSharedLibrary(.{
+            const lib = b.addLibrary(.{
                 .name = lib_name,
-                .root_source_file = b.path(src_path),
-                .target = b.resolveTargetQuery(t),
-                .optimize = optimize,
+                .linkage = .dynamic,
+                .root_module = b.createModule(.{
+                    .root_source_file = b.path(src_path),
+                    .target = b.resolveTargetQuery(t),
+                    .optimize = optimize,
+                }),
             });
 
             const target_output = b.addInstallArtifact(lib, .{
@@ -48,11 +51,14 @@ pub fn build(b: *std.Build) !void {
             b.getInstallStep().dependOn(&target_output.step);
         }
     } else {
-        const lib = b.addSharedLibrary(.{
-            .target = target,
-            .optimize = optimize,
+        const lib = b.addLibrary(.{
             .name = lib_name,
-            .root_source_file = b.path(src_path),
+            .linkage = .dynamic,
+            .root_module = b.createModule(.{
+                .root_source_file = b.path(src_path),
+                .target = target,
+                .optimize = optimize,
+            }),
         });
 
         const cpu_arch = @tagName(target.result.cpu.arch);
